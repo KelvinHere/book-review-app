@@ -15,10 +15,12 @@ app.config["MONGO_URI"] = MONGO_URI
 
 mongo = PyMongo(app)
 
+
 @app.route('/')
-def flask_is_working():
-    mongo.db.book.insert_one( { 'item': "card", 'qty': '15' } )
-    return 'Added document to database'
+@app.route('/view_books')
+def view_books():
+    return render_template('viewbooks.html', books=mongo.db.books.find())
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),
