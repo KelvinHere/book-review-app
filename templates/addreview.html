@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <form class="col s12" action="{{url_for('insert_review')}}" method="POST">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">face</i>
+          <input id="name" name="name" type="text" required>
+          <label for="name">Your Name</label>
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">star_rate</i>
+            <select id="rating" name="rating">
+                <option value="" disabled selected required>Rating</option>
+                <option value="0">0 Star</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Star</option>
+                <option value="3">3 Star</option>
+                <option value="4">4 Star</option>
+                <option value="5">5 Star</option>
+            </select>
+            <label>Star Rating</label>
+        </div>
+      </div>
+    <div class="input-field col s12">
+        <i class="material-icons prefix">description</i>
+        <textarea name="review" id="review" class="materialize-textarea" ></textarea>
+        <label for="review">Review</label>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" >
+        Submit Review
+        <i class="material-icons right">add_circle</i>
+    </button>
+    </form>
+  </div>
+{% endblock %}
