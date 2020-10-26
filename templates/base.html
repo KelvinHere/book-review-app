@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <title>Book Review</title>
 </head>
 <body>
+    <header>
+          <nav>
+            <div class="nav-wrapper">
+            <a href="{{url_for('view_books')}}" class="brand-logo">Book Review</a>
+            <a href="{{url_for('view_books')}}" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{url_for('view_books')}}">Home</a></li>
+                <li><a href="{{url_for('add_book')}}">Add Book</a></li>
+            </ul>
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="{{url_for('view_books')}}">Home</a></li>
+                <li><a href="{{url_for('add_book')}}">Add Book</a></li>
+            </ul>
+            </div>
+        </nav>
+    </header>
     {% block content %} {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('.sidenav').sidenav();
+        $('select').formSelect();
+      });
+    </script>
 </body>
 </html>

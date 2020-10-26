@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <form class="col s12" action="{{url_for('insert_book')}}" method="POST">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">book</i>
+          <input id="title" name="title" type="text" required>
+          <label for="title">Title</label>
+        </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">face</i>
+          <input id="author" name="author" type="text" required>
+          <label for="author">Author</label>
+        </div>
+        <div class="input-field col s6">
+                <select id="genre" name="genre">
+                <option value="" disabled selected required>Set Genre</option>
+                {% for genre in genres %}
+                    <option value="{{genre.name}}">{{genre.genre_name}}</option>
+                {% endfor %}
+                </select>
+            <label>Genre</label>
+        </div>
+        <div class="input-field col s6">
+            <i class="material-icons prefix">link</i>
+            <input id="link" name="link" type="text" required>
+            <label for="link">Purchase Link</label>
+        </div>
+      </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">description</i>
+            <textarea name="summary" id="summary" class="materialize-textarea" ></textarea>
+            <label for="summary">Summary</label>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" >
+            Add Book
+            <i class="material-icons right">playlist_add</i>
+      </button>
+    </form>
+  </div>
+{% endblock %}
