@@ -5,3 +5,8 @@
 .star-rating {
     width: 100px;
 }
+
+.card-image-element {
+    max-height: 400px;
+    object-fit: contain;
+}

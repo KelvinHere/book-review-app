@@ -2,11 +2,11 @@
 {% block content %}
     <div class="row">
         {% for book in books %}
-        <div class="col s12 m6 l4">
+        <div class="col s12 m6 l4 center-align">
             <div class="card-container">
                 <div class="card hoverable">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="static/nocover.jpg" alt="Book Cover for {{book.title}}">
+                        <img class="activator card-image-element" src="{{book.link}}" alt="Book Cover for {{book.title}}">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4"><p><strong>{{book.title.title()}}</strong></p><p>By {{book.author.title()}}<i class="material-icons right">more_vert</i></span>
