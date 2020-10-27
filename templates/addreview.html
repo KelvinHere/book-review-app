@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+    <h2>Add review for {{book.title}}</h2>
   <div class="row">
     <form class="col s12" action="{{url_for('insert_review')}}" method="POST">
       <div class="row">
@@ -27,6 +28,7 @@
         <textarea name="review" id="review" class="materialize-textarea" ></textarea>
         <label for="review">Review</label>
     </div>
+    <input type="hidden" name="book_id" value="{{book._id}}" />
     <button class="btn waves-effect waves-light" type="submit" >
         Submit Review
         <i class="material-icons right">add_circle</i>

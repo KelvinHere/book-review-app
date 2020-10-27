@@ -28,11 +28,6 @@ def add_book():
     return render_template('addbook.html', genres=mongo.db.genres.find().sort([('genre_name', 1)]))
 
 
-@app.route('/add_review')
-def add_review():
-    return render_template('addreview.html', books=mongo.db.books.find())
-
-
 @app.route('/insert_book', methods=['POST'])
 def insert_book():
     formResults = request.form.to_dict()
@@ -42,13 +37,42 @@ def insert_book():
             formResults[k] = v.lower()
 
     formResults['rating'] = 0
+    formResults['reviews'] = 0
     mongo.db.books.insert(formResults)
     return redirect(url_for('view_books'))
 
 
+@app.route('/add_review/<book_id>')
+def add_review(book_id):
+    return render_template('addreview.html', book=mongo.db.books.find_one({"_id": ObjectId(book_id)}))
+
+
 @app.route('/insert_review', methods=['POST'])
 def insert_review():
-    return redirect(url_for('view_books.html'))
+    formResults = request.form.to_dict()
+    # Format reviewer name
+    formResults['name'] = formResults['name'].lower()
+    # Stop rating average manipulation
+    formResults['rating'] = int(formResults['rating'])
+    if formResults['rating'] > 5:
+        formResults['rating'] = 5
+    if formResults['rating'] < 0:
+        formResults['rating'] = 0
+    
+    # Increment number of reviews books.book._id has
+    bookID = formResults['book_id']
+    reviews = mongo.db.books.find_one({"_id": bookID})
+    print(type(bookID))
+    print('##############################################')
+    for k, v in formResults.items():
+        print(k, v)
+    print(reviews)
+
+
+    mongo.db.books.update({'_id': formResults['book_id']}, {"$set": {"reviews": 5}})
+    # Update review collection with new review
+    mongo.db.reviews.insert(formResults)
+    return redirect(url_for('view_books'))
 
 
 if __name__ == "__main__":
