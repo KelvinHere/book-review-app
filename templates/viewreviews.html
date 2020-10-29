@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Reviews for {{bookTitle}}</h2>
+    <h3>Average Rating - {{bookRating}}</h3>
+    <div class="row">
+        {% for review in reviews %}
+            <div class="row">
+                <div class="col s12">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                    <span class="card-title">{{review.reviewer}}'s review : <img src="{{url_for('static', filename='images/stars/star-')}}{{review.rating}}.png" alt="{{review.rating}} stars image" class="star-rating"></span>
+                    <p>{{review.review}}</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

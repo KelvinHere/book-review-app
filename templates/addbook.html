@@ -14,20 +14,25 @@
           <label for="author">Author</label>
         </div>
         <div class="input-field col s6">
-                <select id="genre" name="genre">
-                <option value="" disabled selected required>Set Genre</option>
-                {% for genre in genres %}
-                    <option value="{{genre.genre_name}}">{{genre.genre_name}}</option>
-                {% endfor %}
-                </select>
-            <label>Genre</label>
-        </div>
-        <div class="input-field col s6">
             <i class="material-icons prefix">link</i>
             <input id="link" name="link" type="text" required>
-            <label for="link">Purchase Link</label>
+            <label for="link">Cover Image Link</label>
+        </div>
+        <div class="input-field col s6">
+            <i class="material-icons prefix">shopping_cart</i>
+            <input id="buy_link" name="buy_link" type="text" required>
+            <label for="buy_link">Purchase Link</label>
         </div>
       </div>
+        <div class="input-field col s12">
+            <select id="genre" name="genre">
+                <option value="" disabled selected required>Set Genre</option>
+                    {% for genre in genres %}
+                        <option value="{{genre.genre_name}}">{{genre.genre_name}}</option>
+                    {% endfor %}
+            </select>
+            <label>Genre</label>
+        </div>
         <div class="input-field col s12">
             <i class="material-icons prefix">description</i>
             <textarea name="summary" id="summary" class="materialize-textarea" ></textarea>
