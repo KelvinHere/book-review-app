@@ -78,9 +78,6 @@ def insert_review():
     if formResults['rating'] < 0:
         formResults['rating'] = 0
 
-    # Update average book score
-    update_average_score(formResults['book_id'], formResults['rating'])
-
     # Update book with new review
     mongo.db.books.update_one({'_id': ObjectId(formResults['book_id'])},
                               {"$push": {'reviews':
@@ -88,37 +85,32 @@ def insert_review():
                                           'reviewer': formResults['name'],
                                           'rating': formResults['rating'],
                                           'review': formResults['review']}}})
+    # Update average book score
+    update_average_score(formResults['book_id'])
     return redirect(url_for('view_books'))
 
 
 @app.route('/delete_review/<book_id>/<review_id>')
 def delete_review(book_id, review_id):
-    print('################################')
-    print(book_id)
-    print(review_id)
-
-    #findId = mongo.db.books.aggregate([{"$project": { "matchedIndex": { "$indexOfArray": [ "reviews", 1]}}}])
-
     mongo.db.books.update_one({'_id': ObjectId(book_id)},
                           {'$pull': {'reviews':
                                      {'_id': ObjectId(review_id)}}})
-
-    #mongo.db.books.update_many({'_id': ObjectId(book_id)}, { '$pull': { 'reviews': { '_id': { '$elemMatch': { '_id': review_id}}}}})
-    update_average_score(book_id, 0)
+    update_average_score(book_id)
     return redirect(url_for('view_reviews', book_id=book_id))
 
-def update_average_score(book_id, thisReviewRating=0):
-    # Get new avarage score from all reviews of book and update database
-    # Takes book_id as string and rating
+def update_average_score(book_id):
+    # Updates the average review score by book_id
     currentBookReviews = mongo.db.books.find_one({'_id': ObjectId(book_id)},
                                                  {'reviews': (),
                                                   '_id': 0})['reviews']
-    totalReviews = len(currentBookReviews) + 1
+    totalReviews = len(currentBookReviews)
     totalRating = 0
     for review in currentBookReviews:
         totalRating += int(review['rating'])
-    totalRating += thisReviewRating
-    newRating = round(totalRating / totalReviews)
+    if totalReviews > 0:
+        newRating = round(totalRating / totalReviews)
+    else:
+        newRating = 0
     mongo.db.books.update_one({'_id': ObjectId(book_id)},
                               {'$set': {'rating': newRating}})
 
