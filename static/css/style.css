@@ -6,7 +6,24 @@
     width: 100px;
 }
 
+.card-image {
+    position: relative;
+}
+
 .card-image-element {
     max-height: 400px;
     object-fit: contain;
+}
+
+.edit-book-btn {
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    background-color: rgb(92, 114, 194, 0.3);
+    transform: translate(-50%, -30%);
+}
+
+.edit-book-btn :hover {
+    background-color: rgb(92, 114, 194);
+
 }

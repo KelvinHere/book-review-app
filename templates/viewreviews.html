@@ -6,10 +6,12 @@
         {% for review in reviews %}
             <div class="row">
                 <div class="col s12">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                    <span class="card-title">{{review.reviewer}}'s review : <img src="{{url_for('static', filename='images/stars/star-')}}{{review.rating}}.png" alt="{{review.rating}} stars image" class="star-rating"></span>
-                    <p>{{review.review}}</p>
+                <div class="card grey lighten-3">
+                    <div class="card-content black-text">
+                        <span class="card-title">{{review.reviewer.title()}}'s review : 
+                            <img src="{{url_for('static', filename='images/stars/star-')}}{{review.rating}}.png" alt="{{review.rating}} stars image" class="star-rating">
+                            <a href="{{url_for('delete_review', book_id=book_id, review_id=review._id)}}" class="transparent right btn-flat"><i class="material-icons left">delete_forever</i></a></span>
+                        <p>{{review.review}}</p>
                     </div>
                 </div>
                 </div>
