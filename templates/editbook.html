@@ -47,7 +47,8 @@
         <button class="btn waves-effect waves-light" type="submit" >
             Update Book
             <i class="material-icons right">playlist_add</i>
-      </button>
+        </button>
+        <a href="{{url_for('delete_book', book_id=book._id)}}" class="waves-effect waves-light right btn red"><i class="material-icons right">delete_forever</i>Delete</a>
     </form>
   </div>
 {% endblock %}

@@ -60,6 +60,11 @@ def update_book(book_id):
     return redirect(url_for('view_books'))
 
 
+@app.route('/delete_book/<book_id>')
+def delete_book(book_id):
+    mongo.db.books.remove({'_id': ObjectId(book_id)})
+    return redirect(url_for('view_books'))
+
 # -------------------------------------------------- Review realted views
 @app.route('/view_reviews/<book_id>')
 def view_reviews(book_id):
