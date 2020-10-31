@@ -37,8 +37,13 @@
                         <p>by {{book.author.title()}}</p>
                         <img src="{{url_for('static', filename='images/stars/star-')}}{{book.rating}}.png" alt="{{book.rating}} stars image" class="star-rating">
                         <p>{{book.summary}}</p>
+                        <hr>
+                        <p class="center-align"><a href="{{url_for('view_reviews', book_id=book._id)}}" class="waves-effect waves-light btn">{{book.reviews|length}} Reviews</a></p>
+                        <p class="center-align"><a href="{{url_for('add_review', book_id=book._id)}}" class="waves-effect waves-light btn">Write Review</a></p>
+                        <hr>
                         <p class="center-align"><a href="{{book.buy_link}}" class="waves-effect waves-light btn"><i class="material-icons left">shopping_cart</i>BUY NOW!</a></p>
                         <p class="center-align"><a href="{{url_for('edit_book', book_id=book._id)}}" class="waves-effect waves-light btn"><i class="material-icons left">create</i>Edit Book</a></p>
+                        <hr>
                     </div>
                 </div>
             </div>

@@ -1,45 +1,51 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="row">
-    <form class="col s12" action="{{url_for('insert_book')}}" method="POST">
+    <form class="col s12" action="{{url_for('update_book', book_id=book._id)}}" method="POST">
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">book</i>
-          <input id="title" name="title" type="text" required>
+          <input id="title" name="title" type="text" value="{{book.title.title()}}" required>
           <label for="title">Title</label>
         </div>
         <div class="input-field col s6">
           <i class="material-icons prefix">face</i>
-          <input id="author" name="author" type="text" required>
+          <input id="author" name="author" type="text" value="{{book.author.title()}}" required>
           <label for="author">Author</label>
         </div>
         <div class="input-field col s6">
             <i class="material-icons prefix">link</i>
-            <input id="link" name="link" type="text" required>
+            <input id="link" name="link" type="text" value="{{book.link}}" required>
             <label for="link">Cover Image Link</label>
         </div>
         <div class="input-field col s6">
             <i class="material-icons prefix">shopping_cart</i>
-            <input id="buy_link" name="buy_link" type="text" required>
+            <input id="buy_link" name="buy_link" type="text" value="{{book.buy_link}}" required>
             <label for="buy_link">Purchase Link</label>
         </div>
       </div>
         <div class="input-field col s12">
             <select id="genre" name="genre">
-                <option value="" disabled selected required>Set Genre</option>
+                <option value="{{book.genre}}" disabled selected required>{{book.genre}}</option>
                     {% for genre in genres %}
-                        <option value="{{genre.genre_name}}">{{genre.genre_name}}</option>
+                        {% if genre.genre_name == book.genre %}
+                            <option value="{{genre.genre_name}}" selected >{{genre.genre_name}}</option>
+                        {% else %}
+                            <option value="{{genre.genre_name}}" >{{genre.genre_name}}</option>
+                        {% endif %}
+                            
+                     
                     {% endfor %}
             </select>
             <label>Genre</label>
         </div>
         <div class="input-field col s12">
             <i class="material-icons prefix">description</i>
-            <textarea name="summary" id="summary" class="materialize-textarea" ></textarea>
+            <textarea name="summary" id="summary" class="materialize-textarea" >{{book.summary}}</textarea>
             <label for="summary">Summary</label>
         </div>
         <button class="btn waves-effect waves-light" type="submit" >
-            Add Book
+            Update Book
             <i class="material-icons right">playlist_add</i>
       </button>
     </form>

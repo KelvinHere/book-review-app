@@ -37,13 +37,26 @@ def insert_book():
     return redirect(url_for('view_books'))
 
 
-@app.route('/edit_book/')
-def edit_book():
-    return render_template('editbook.html', books=mongo.db.books.find())
+@app.route('/edit_book/<book_id>')
+def edit_book(book_id):
+    return render_template('editbook.html', genres=mongo.db.genres.find(), book=mongo.db.books.find_one({"_id": ObjectId(book_id)}))
 
 
 @app.route('/update_book/<book_id>', methods=['POST'])
 def update_book(book_id):
+    formResults = request.form.to_dict()
+    # Format form results before submitting to database
+    formResults['title'] = formResults['title'].lower()
+    formResults['author'] = formResults['author'].lower()
+    mongo.db.books.update({'_id': ObjectId(book_id)},
+                              {'$set': {
+                                'title': formResults['title'],
+                                'author': formResults['author'],
+                                'genre': formResults['genre'],
+                                'summary': formResults['summary'],
+                                'link': formResults['link'],
+                                'buy_link': formResults['buy_link']
+                                 }})
     return redirect(url_for('view_books'))
 
 
