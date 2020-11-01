@@ -14,9 +14,13 @@ mongo = PyMongo(app)
 
 # -------------------------------------------------- Book realted views
 @app.route('/')
-@app.route('/view_books')
-def view_books():
-    return render_template('viewbooks.html', books=mongo.db.books.find())
+@app.route('/view_books/<field>/<title>')
+def view_books(field='title', direction=1):
+    print("########################")
+    print(field)
+    print(direction)
+    bookOrder = mongo.db.books.find().sort(field, direction)
+    return render_template('viewbooks.html', books=bookOrder)
 
 
 @app.route('/add_book')
