@@ -1,22 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Reviews for {{bookTitle}}</h2>
-    <h3>Average Rating - <img src="{{url_for('static', filename='images/stars/star-')}}{{bookRating}}.png" alt="stars rating image" class="star-rating"></h3>
+<h2>Reviews for {{bookTitle}}</h2>
+<h3>Average Rating - <img src="{{url_for('static', filename='images/stars/star-')}}{{bookRating}}.png"
+        alt="stars rating image" class="star-rating"></h3>
+<div class="row">
+    {% for review in reviews %}
     <div class="row">
-        {% for review in reviews %}
-            <div class="row">
-                <div class="col s12">
-                <div class="card grey lighten-3">
-                    <div class="card-content black-text">
-                        <span class="card-title">{{review.reviewer.title()}}'s review : 
-                            <img src="{{url_for('static', filename='images/stars/star-')}}{{review.rating}}.png" alt="{{review.rating}} stars image" class="star-rating">
-                            <a href="{{url_for('delete_review', book_id=book_id, review_id=review._id)}}" class="transparent right btn-flat"><i class="material-icons left">delete_forever</i></a></span>
-                        <p>{{review.review}}</p>
-                    </div>
-                </div>
+        <div class="col s12">
+            <div class="card grey lighten-3">
+                <div class="card-content black-text">
+                    <span class="card-title">{{review.reviewer.title()}}'s review :
+                        <img src="{{url_for('static', filename='images/stars/star-')}}{{review.rating}}.png"
+                            alt="{{review.rating}} stars image" class="star-rating">
+                        <a href="{{url_for('delete_review', book_id=book_id, review_id=review._id)}}"
+                            class="transparent right btn-flat"><i
+                                class="material-icons left">delete_forever</i></a></span>
+                    <p>{{review.review}}</p>
                 </div>
             </div>
-        {% endfor %}
-    <p class="center-align"><a href="{{url_for('add_review', book_id=book_id)}}" class="waves-effect waves-light btn">Write Review</a></p>
+        </div>
     </div>
+    {% endfor %}
+    <p class="center-align"><a href="{{url_for('add_review', book_id=book_id)}}"
+            class="waves-effect waves-light btn">Write Review</a></p>
+</div>
 {% endblock %}

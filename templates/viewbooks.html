@@ -1,117 +1,103 @@
 {% extends 'base.html' %} {% block content %}
 <div class="row body-container">
-    <ul class="collapsible">
-      <li>
-          <div class="collapsible-header"><i class="material-icons">search</i>Search</div>
-          <div class="collapsible-body">
-            <div class="row search-container">
-                <form action="{{url_for('sort_books')}}" method="POST">
-                    <div class="col s6">
-                        <p>
-                        <label>
-                            {% if sortparameters.sortField == 'title' %}
-                                <input value="title" name="sortField" id="Title" type="radio" checked />
-                            {% else %}
-                                <input value="title" name="sortField" id="Title" type="radio" />
-                            {% endif %}
-                            <span>Title</span>
-                        </label>
-                        </p>
-                        <p>
-                        <label>
-                            {% if sortparameters.sortField == 'author' %}
-                                <input value="author" name="sortField" id="Alpha" type="radio" checked />
-                            {% else %}
-                                <input value="author" name="sortField" id="Alpha" type="radio" />
-                            {% endif %}
-                            <span>Author</span>
-                        </label>
-                        </p>
-                        <p>
-                        <label>
-                            {% if sortparameters.sortField == 'rating' %}
-                                <input value="rating" name="sortField" id="Rating" type="radio" checked />
-                            {% else %}
-                                <input value="rating" name="sortField" id="Rating" type="radio" />
-                            {% endif %}
-                            <span>Rating</span>
-                        </label>
-                        </p>
-                    </div>
-                    <div class="col s6">
-                        <p>
-                        <label>
-                            {% if sortparameters.sortDirection == 1 %}
-                                <input value="1" name="sortDirection" id="AZ" type="radio" checked />
-                            {% else %}
-                                <input value="1" name="sortDirection" id="AZ" type="radio" />
-                            {% endif %}
-                            <span>Ascending</span>
-                        </label>
-                        </p>
-                        <p>
-                        <label>
-                            {% if sortparameters.sortDirection == -1 %}
-                                <input value="-1" name="sortDirection" id="ZA" type="radio" checked />
-                            {% else %}
-                                <input value="-1" name="sortDirection" id="ZA" type="radio" />
-                            {% endif %}
-                            <span>Descending</span>
-                        </label>
-                        </p>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <button class="btn waves-effect waves-light center-align" type="submit" name="action">
-                                Sort
-                            </button>
-                        </div>
-                    </div>
-                </form>
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">search</i>Search</div>
+      <div class="collapsible-body">
+        <div class="row search-container">
+          <form action="{{url_for('sort_books')}}" method="POST">
+            <div class="col s6">
+              <p>
+                <label>
+                  {% if sortparameters.sortField == 'title' %}
+                  <input value="title" name="sortField" id="Title" type="radio" checked />
+                  {% else %}
+                  <input value="title" name="sortField" id="Title" type="radio" />
+                  {% endif %}
+                  <span>Title</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  {% if sortparameters.sortField == 'author' %}
+                  <input value="author" name="sortField" id="Alpha" type="radio" checked />
+                  {% else %}
+                  <input value="author" name="sortField" id="Alpha" type="radio" />
+                  {% endif %}
+                  <span>Author</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  {% if sortparameters.sortField == 'rating' %}
+                  <input value="rating" name="sortField" id="Rating" type="radio" checked />
+                  {% else %}
+                  <input value="rating" name="sortField" id="Rating" type="radio" />
+                  {% endif %}
+                  <span>Rating</span>
+                </label>
+              </p>
             </div>
+            <div class="col s6">
+              <p>
+                <label>
+                  {% if sortparameters.sortDirection == 1 %}
+                  <input value="1" name="sortDirection" id="AZ" type="radio" checked />
+                  {% else %}
+                  <input value="1" name="sortDirection" id="AZ" type="radio" />
+                  {% endif %}
+                  <span>Ascending</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  {% if sortparameters.sortDirection == -1 %}
+                  <input value="-1" name="sortDirection" id="ZA" type="radio" checked />
+                  {% else %}
+                  <input value="-1" name="sortDirection" id="ZA" type="radio" />
+                  {% endif %}
+                  <span>Descending</span>
+                </label>
+              </p>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button class="btn waves-effect waves-light center-align" type="submit" name="action">
+                  Sort
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
     </li>
   </ul>
-  
-
   {% for book in books %}
   <div class="col s12 m6 l4 center-align">
     <div class="card-container">
       <div class="card hoverable">
         <div class="card-image waves-effect waves-block waves-light">
-          <img
-            class="activator card-image-element"
-            src="{{book.link}}"
-            alt="Book Cover for {{book.title}}"
-          />
+          <img class="activator card-image-element" src="{{book.link}}" alt="Book Cover for {{book.title}}" />
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"
-            ><p><strong>{{book.title.title()}}</strong></p>
+          <span class="card-title activator grey-text text-darken-4">
+            <p><strong>{{book.title.title()}}</strong></p>
             <p>
-              By {{book.author.title()}}<i class="material-icons right"
-                >more_vert</i
-              >
-            </p></span
-          >
+              By {{book.author.title()}}<i class="material-icons right">more_vert</i>
+            </p>
+          </span>
           <hr />
           <div class="row">
             <div class="col s6">
               <p class="center-align">
-                <a
-                  href="{{url_for('view_reviews', book_id=book._id)}}"
-                  class="waves-effect waves-light btn"
-                  >{{book.reviews|length}} Reviews</a
-                >
+                <a href="{{url_for('view_reviews', book_id=book._id)}}"
+                  class="waves-effect waves-light btn">{{book.reviews|length}} Reviews</a>
               </p>
             </div>
             <div class="col s6">
               <div class="rating-container center-align">
-                <img
-                  src="{{url_for('static', filename='images/stars/star-')}}{{book.rating}}.png"
-                  alt="{{book.rating}} stars image"
-                  class="star-rating"
-                />
+                <img src="{{url_for('static', filename='images/stars/star-')}}{{book.rating}}.png"
+                  alt="{{book.rating}} stars image" class="star-rating" />
               </div>
             </div>
           </div>
@@ -119,61 +105,41 @@
           <div class="row">
             <div class="col s6">
               <p class="center-align">
-                <a
-                  href="{{url_for('add_review', book_id=book._id)}}"
-                  class="waves-effect waves-light btn"
-                  >Write Review</a
-                >
+                <a href="{{url_for('add_review', book_id=book._id)}}" class="waves-effect waves-light btn">Write
+                  Review</a>
               </p>
             </div>
             <div class="col s6">
               <p class="center-align">
-                <a href="{{book.buy_link}}" class="waves-effect waves-light btn"
-                  ><i class="material-icons left">shopping_cart</i>BUY NOW!</a
-                >
+                <a href="{{book.buy_link}}" class="waves-effect waves-light btn"><i
+                    class="material-icons left">shopping_cart</i>BUY NOW!</a>
               </p>
             </div>
           </div>
         </div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"
-            ><i class="material-icons right">close</i></span
-          >
+          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
           <h4><strong>{{book.title.title()}}</strong></h4>
           <p>by {{book.author.title()}}</p>
-          <img
-            src="{{url_for('static', filename='images/stars/star-')}}{{book.rating}}.png"
-            alt="{{book.rating}} stars image"
-            class="star-rating"
-          />
+          <img src="{{url_for('static', filename='images/stars/star-')}}{{book.rating}}.png"
+            alt="{{book.rating}} stars image" class="star-rating" />
           <p>{{book.summary}}</p>
           <hr />
           <p class="center-align">
-            <a
-              href="{{url_for('view_reviews', book_id=book._id)}}"
-              class="waves-effect waves-light btn"
-              >{{book.reviews|length}} Reviews</a
-            >
+            <a href="{{url_for('view_reviews', book_id=book._id)}}"
+              class="waves-effect waves-light btn">{{book.reviews|length}} Reviews</a>
           </p>
           <p class="center-align">
-            <a
-              href="{{url_for('add_review', book_id=book._id)}}"
-              class="waves-effect waves-light btn"
-              >Write Review</a
-            >
+            <a href="{{url_for('add_review', book_id=book._id)}}" class="waves-effect waves-light btn">Write Review</a>
           </p>
           <p class="center-align">
-            <a href="{{book.buy_link}}" class="waves-effect waves-light btn"
-              ><i class="material-icons left">shopping_cart</i>BUY NOW!</a
-            >
+            <a href="{{book.buy_link}}" class="waves-effect waves-light btn"><i
+                class="material-icons left">shopping_cart</i>BUY NOW!</a>
           </p>
           <hr />
           <p class="center-align">
-            <a
-              href="{{url_for('edit_book', book_id=book._id)}}"
-              class="waves-effect waves-light btn"
-              ><i class="material-icons left">create</i>Edit Book</a
-            >
+            <a href="{{url_for('edit_book', book_id=book._id)}}" class="waves-effect waves-light btn"><i
+                class="material-icons left">create</i>Edit Book</a>
           </p>
           <hr />
         </div>
