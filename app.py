@@ -14,13 +14,18 @@ mongo = PyMongo(app)
 
 # -------------------------------------------------- Book realted views
 @app.route('/')
-@app.route('/view_books/<field>/<title>')
-def view_books(field='title', direction=1):
-    print("########################")
-    print(field)
-    print(direction)
-    bookOrder = mongo.db.books.find().sort(field, direction)
-    return render_template('viewbooks.html', books=bookOrder)
+@app.route('/view_books')
+def view_books():
+    bookOrder = mongo.db.books.find().sort('title', 1)
+    return render_template('viewbooks.html', books=bookOrder, sortparameters={'sortField': 'title', 'sortDirection': 1})
+
+
+@app.route('/sort_books', methods=['POST'])
+def sort_books():
+    sortField = request.form.get('sortField')
+    sortDirection = int(request.form.get('sortDirection'))
+    bookOrder = mongo.db.books.find().sort(sortField, sortDirection)
+    return render_template('viewbooks.html', books=bookOrder, sortparameters={'sortField': sortField, 'sortDirection': sortDirection})
 
 
 @app.route('/add_book')
