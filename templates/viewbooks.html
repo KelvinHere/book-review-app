@@ -1,40 +1,40 @@
 {% extends 'base.html' %} {% block content %}
 {{rating}}
 
-<div class="row body-container">
-  <ul class="collapsible">
+<section class="row body-container">
+  <ul class="collapsible col s12 m6 l4 offset-m3 offset-l4">
     <li>
-      <div class="collapsible-header"><i class="material-icons">search</i>Search</div>
+      <div class="collapsible-header"><i class="material-icons">sort</i>Sort Books</div>
       <div class="collapsible-body">
         <div class="row search-container">
           <form action="{{url_for('sort_books')}}" method="POST">
-            <div class="col s6">
+            <div class="col s6  grey lighten-4">
               <p>
                 <label>
-                  {% if sortparameters.sortField == 'title' %}
-                  <input value="title" name="sortField" id="Title" type="radio" checked />
+                  {% if sortParameters.sortField == 'title' %}
+                  <input value="title" name="sortField" id="{{sortParameters.sortField}}" type="radio" checked />
                   {% else %}
-                  <input value="title" name="sortField" id="Title" type="radio" />
+                  <input value="title" name="sortField" id="{{sortParameters.sortField}}" type="radio" />
                   {% endif %}
                   <span>Title</span>
                 </label>
               </p>
               <p>
                 <label>
-                  {% if sortparameters.sortField == 'author' %}
-                  <input value="author" name="sortField" id="Alpha" type="radio" checked />
+                  {% if sortParameters.sortField == 'author' %}
+                  <input value="author" name="sortField" id="{{sortParameters.sortField}}" type="radio" checked />
                   {% else %}
-                  <input value="author" name="sortField" id="Alpha" type="radio" />
+                  <input value="author" name="sortField" id="{{sortParameters.sortField}}" type="radio" />
                   {% endif %}
                   <span>Author</span>
                 </label>
               </p>
               <p>
                 <label>
-                  {% if sortparameters.sortField == 'rating' %}
-                  <input value="rating" name="sortField" id="Rating" type="radio" checked />
+                  {% if sortParameters.sortField == 'rating' %}
+                  <input value="rating" name="sortField" id="{{sortParameters.sortField}}" type="radio" checked />
                   {% else %}
-                  <input value="rating" name="sortField" id="Rating" type="radio" />
+                  <input value="rating" name="sortField" id="{{sortParameters.sortField}}" type="radio" />
                   {% endif %}
                   <span>Rating</span>
                 </label>
@@ -43,37 +43,37 @@
             <div class="col s6">
               <p>
                 <label>
-                  {% if sortparameters.sortDirection == 1 %}
-                  <input value="1" name="sortDirection" id="AZ" type="radio" checked />
+                  {% if sortParameters.sortDirection == 1 %}
+                  <input value="1" name="sortDirection" id="{{sortParameters.sortDirection}}" type="radio" checked />
                   {% else %}
-                  <input value="1" name="sortDirection" id="AZ" type="radio" />
+                  <input value="1" name="sortDirection" id="{{sortParameters.sortDirection}}" type="radio" />
                   {% endif %}
                   <span>Ascending</span>
                 </label>
               </p>
               <p>
                 <label>
-                  {% if sortparameters.sortDirection == -1 %}
-                  <input value="-1" name="sortDirection" id="ZA" type="radio" checked />
+                  {% if sortParameters.sortDirection == -1 %}
+                  <input value="-1" name="sortDirection" id="{{sortParameters.sortDirection}}" type="radio" checked />
                   {% else %}
-                  <input value="-1" name="sortDirection" id="ZA" type="radio" />
+                  <input value="-1" name="sortDirection" id="{{sortParameters.sortDirection}}" type="radio" />
                   {% endif %}
                   <span>Descending</span>
                 </label>
               </p>
             </div>
-            <div class="row">
-              <div class="col s12">
-                <button class="btn waves-effect waves-light center-align" type="submit" name="action">
-                  Sort
-                </button>
-              </div>
+            <div class="col s">
+              <button class="btn waves-effect waves-light center-align" type="submit" name="action">
+                Sort
+              </button>
             </div>
           </form>
         </div>
       </div>
     </li>
   </ul>
+</section>
+<section class="row">
   {% for book in books %}
   <div class="col s12 m6 l4 center-align">
     <div class="card-container">
@@ -149,5 +149,7 @@
     </div>
   </div>
   {% endfor %}
-</div>
+    <p class="center-align"><a href="{{url_for('add_book')}}"
+      class="waves-effect waves-light btn-large">Add Book</a></p>
+</section>
 {% endblock %}

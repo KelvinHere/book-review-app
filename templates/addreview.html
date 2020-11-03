@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Add review for {{book.title}}</h2>
-<div class="row">
+<div class="center-align container section">
+  <h3>Write a review for {{book.title.title()}}</h3>
+</div>
+<div class="row container section">
   <form class="col s12" action="{{url_for('insert_review')}}" method="POST">
     <div class="row">
       <div class="input-field col s12">

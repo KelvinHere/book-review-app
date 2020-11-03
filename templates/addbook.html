@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row">
+<div class="center-align container section">
+  <h3>Add a book</h3>
+</div>
+<div class="row container section">
   <form class="col s12" action="{{url_for('insert_book')}}" method="POST">
     <div class="row">
       <div class="input-field col s6">

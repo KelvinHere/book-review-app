@@ -17,7 +17,7 @@ mongo = PyMongo(app)
 @app.route('/view_books')
 def view_books():
     bookOrder = mongo.db.books.find().sort('title', 1)
-    return render_template('viewbooks.html', books=bookOrder, sortparameters={'sortField': 'title', 'sortDirection': 1})
+    return render_template('viewbooks.html', books=bookOrder, sortParameters={'sortField': 'title', 'sortDirection': 1})
 
 
 @app.route('/sort_books', methods=['POST'])
@@ -25,7 +25,7 @@ def sort_books():
     sortField = request.form.get('sortField')
     sortDirection = int(request.form.get('sortDirection'))
     bookOrder = mongo.db.books.find().sort(sortField, sortDirection)
-    return render_template('viewbooks.html', books=bookOrder, sortparameters={'sortField': sortField, 'sortDirection': sortDirection})
+    return render_template('viewbooks.html', books=bookOrder, sortParameters={'sortField': sortField, 'sortDirection': sortDirection})
 
 
 @app.route('/add_book')
@@ -98,10 +98,7 @@ def add_review(book_id):
 def insert_review():
     formResults = request.form.to_dict()
     formResults['name'] = formResults['name'].lower()  # Format reviewer name
-
-    # Stop rating average manipulation
-    formResults['rating'] = check_review_score(formResults['rating'])
-
+    formResults['rating'] = check_review_score(formResults['rating']) # Stop rating average manipulation
     # Insert new review into book
     mongo.db.books.update_one({'_id': ObjectId(formResults['book_id'])},
                               {"$push": {'reviews':
