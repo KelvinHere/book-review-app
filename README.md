@@ -2,7 +2,7 @@
  
 Book Review App
  
-The user is presented with a list of books, they can read and write reviews and have access to a links to buy the books they may like.
+The user is presented with a list of books, they can read and write reviews and have access to links to buy the books they may like.
  
 * [Live link to site](https://book-review-kelvinhere.herokuapp.com/ 'Heroku live link to app')
 * [This Repository](https://github.com/KelvinHere/book-review-app 'Github repository link')
@@ -11,7 +11,6 @@ The user is presented with a list of books, they can read and write reviews and 
  
 1. [**UX**](#ux)
    * [**Project Purpose**](#project-purpose)
-   * [**Gameplay Rules & Player Experience**](#gameplay-rules-and-player-experience)
    * [**Wireframe Designs**](#wireframe-designs)
    * [**User Stories**](#user-stories)
    * [**Business and Developer Goals**](#business-and-developer-goals)

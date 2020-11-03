@@ -106,7 +106,7 @@ def insert_review():
     if formResults['rating'] < 0:
         formResults['rating'] = 0
 
-    # Update book with new review
+    # Insert new review into book
     mongo.db.books.update_one({'_id': ObjectId(formResults['book_id'])},
                               {"$push": {'reviews':
                                          {'_id': ObjectId(),
@@ -116,6 +116,28 @@ def insert_review():
     # Update average book score
     update_average_score(formResults['book_id'])
     return redirect(url_for('view_books'))
+
+
+@app.route('/edit_review/<book_id>/<review_id>')
+def edit_review(book_id, review_id):
+    reviewInfo = list(mongo.db.books.find({'_id': ObjectId(book_id)}, {'reviews': {'$elemMatch': {'_id': ObjectId(review_id)}}}))
+    review = reviewInfo[0]['reviews'][0]['review']
+    rating = reviewInfo[0]['reviews'][0]['rating']
+    print('#########EDIT###########')
+    print(rating)
+    return render_template('editreview.html', book_id=book_id, review_id=review_id, review=review, rating=rating)
+
+
+@app.route('/update_review/<book_id>/<review_id>', methods=['POST'])
+def update_review(book_id, review_id):
+    print('###############################################')
+    print(request.form.get('new_rating'))
+    mongo.db.books.update_one({'_id': ObjectId(book_id), 'reviews._id': ObjectId(review_id)},
+                              {'$set': {'reviews.$.rating': request.form.get('new_rating'),
+                                         'reviews.$.review': request.form.get('new_review')}})
+
+    update_average_score(book_id)
+    return redirect(url_for('view_reviews', book_id=book_id, review_id=review_id))
 
 
 @app.route('/delete_review/<book_id>/<review_id>')
