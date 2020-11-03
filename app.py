@@ -100,11 +100,7 @@ def insert_review():
     formResults['name'] = formResults['name'].lower()  # Format reviewer name
 
     # Stop rating average manipulation
-    formResults['rating'] = int(formResults['rating'])
-    if formResults['rating'] > 10:
-        formResults['rating'] = 10
-    if formResults['rating'] < 0:
-        formResults['rating'] = 0
+    formResults['rating'] = check_review_score(formResults['rating'])
 
     # Insert new review into book
     mongo.db.books.update_one({'_id': ObjectId(formResults['book_id'])},
@@ -123,30 +119,35 @@ def edit_review(book_id, review_id):
     reviewInfo = list(mongo.db.books.find({'_id': ObjectId(book_id)}, {'reviews': {'$elemMatch': {'_id': ObjectId(review_id)}}}))
     review = reviewInfo[0]['reviews'][0]['review']
     rating = reviewInfo[0]['reviews'][0]['rating']
-    print('#########EDIT###########')
-    print(rating)
     return render_template('editreview.html', book_id=book_id, review_id=review_id, review=review, rating=rating)
 
 
 @app.route('/update_review/<book_id>/<review_id>', methods=['POST'])
 def update_review(book_id, review_id):
-    print('###############################################')
-    print(request.form.get('new_rating'))
+    checkedReviewScore = check_review_score(request.form.get('new_rating'))
     mongo.db.books.update_one({'_id': ObjectId(book_id), 'reviews._id': ObjectId(review_id)},
-                              {'$set': {'reviews.$.rating': request.form.get('new_rating'),
-                                         'reviews.$.review': request.form.get('new_review')}})
-
+                              {'$set': {'reviews.$.review': request.form.get('new_review'),
+                                        'reviews.$.rating': checkedReviewScore}})
     update_average_score(book_id)
-    return redirect(url_for('view_reviews', book_id=book_id, review_id=review_id))
+    return redirect(url_for('view_reviews', book_id=book_id))
 
 
 @app.route('/delete_review/<book_id>/<review_id>')
 def delete_review(book_id, review_id):
     mongo.db.books.update_one({'_id': ObjectId(book_id)},
-                          {'$pull': {'reviews':
-                                     {'_id': ObjectId(review_id)}}})
+                              {'$pull': {'reviews':
+                                         {'_id': ObjectId(review_id)}}})
     update_average_score(book_id)
     return redirect(url_for('view_reviews', book_id=book_id))
+
+
+def check_review_score(score):
+    score = int(score)
+    if score > 10:
+        score = 10
+    if score < 0:
+        score = 0
+    return score
 
 
 def update_average_score(book_id):

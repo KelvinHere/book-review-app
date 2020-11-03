@@ -9,7 +9,7 @@
             {% for i in range(11) %}
                 {% if i % 2 == 0 %}
                     {% if i == rating %}
-                        <option value="{{i}}" selected>{{i//2}} Star</option>
+                        <option value="{{rating}}" selected>{{i//2}} Star</option>
                     {% else %}
                         <option value="{{i}}">{{i//2}} Star</option>
                     {% endif %}
