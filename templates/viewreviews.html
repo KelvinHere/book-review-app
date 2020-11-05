@@ -11,16 +11,18 @@
         <div class="col s12">
             <div class="card grey lighten-3">
                 <div class="card-content black-text">
-                    <span class="card-title valign-wrapper">{{review.reviewer.title()}}'s review :
-                        <img src="{{url_for('static', filename='images/stars/star-')}}{{review.rating}}.png"
+                    <span class="card-title valign-wrapper">{{review.reviewer.title()}}'s review</span>
+                    <img src="{{url_for('static', filename='images/stars/star-')}}{{review.rating}}.png"
                             alt="{{review.rating}} stars image" class="review-rating">
-                        <a href="{{url_for('delete_review', book_id=book_id, review_id=review._id)}}"
-                            class="transparent right btn-flat review-edit-button"><i
-                                class="material-icons">delete_forever</i></a>
-                        <a href="{{url_for('edit_review', book_id=book_id, review_id=review._id)}}"
-                            class="transparent right btn-flat review-edit-button"><i
-                                class="material-icons">create</i></a></span>
                     <p>{{review.review}}</p>
+                    <div class="card-action">
+                      <a href="{{url_for('delete_review', book_id=book_id, review_id=review._id)}}"
+                        class="transparent right teal-text btn-flat"><i
+                        class="material-icons">delete_forever</i>Edit</a>
+                      <a href="{{url_for('edit_review', book_id=book_id, review_id=review._id)}}"
+                        class="transparent right red-text btn-flat"><i
+                        class="material-icons">create</i>Delete</a>
+                    </div>
                 </div>
             </div>
         </div>
