@@ -1,18 +1,14 @@
-.body {
-    background: purple;
-}
-
 .star-rating {
     width: 100px;
 }
 
 .card-image {
-    position: relative;
+    height: 200px;
 }
 
 .card-image-element {
-    max-height: 400px;
-    object-fit: contain;
+    height: 200px;
+    object-fit: scale-down;
 }
 
 .hr-card {
@@ -26,3 +22,4 @@
 .card-reveal .btn {
     width: 50%;
 }
+
