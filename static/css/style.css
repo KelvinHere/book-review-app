@@ -1,6 +1,7 @@
 body {
   min-width: 325px;
   font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
 }
 
 h1, h2, h3, h4, h5, h6, .brand-logo {
@@ -8,12 +9,26 @@ h1, h2, h3, h4, h5, h6, .brand-logo {
  text-transform: uppercase;
 }
 
+.bold-title {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+}
+
+
 .star-rating-container > img {
     width: 50%;
 }
 
 .main-review-rating {
     width: 150px;
+}
+
+.margin-bottom-0 {
+    margin-bottom: 0px !important;
+}
+
+.margin-top-0 {
+    margin-top: 0px !important;
 }
 
 .review-rating {
@@ -40,10 +55,6 @@ h1, h2, h3, h4, h5, h6, .brand-logo {
 
 .card-reveal .btn {
     width: 50%;
-}
-
-.review-edit-button {
-    padding: 5px;
 }
 
 @media only screen and (min-width: 993px) {

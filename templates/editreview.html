@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-{{rating}}
+<div class="center-align container section">
+    <h5>Edit this review</h5>
+</div>
 <div class="row">
   <form class="col s12" action="{{url_for('update_review', book_id=book_id, review_id=review_id)}}" method="POST">
   <div class="input-field col s12">
