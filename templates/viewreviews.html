@@ -16,12 +16,13 @@
                             alt="{{review.rating}} stars image" class="review-rating">
                     <p>{{review.review}}</p>
                     <div class="card-action">
+                      <a href="{{url_for('edit_review', book_id=book_id, review_id=review._id)}}"
+                        class="transparent left teal-text btn-flat"><i
+                        class="material-icons">create</i></a>
                       <a href="{{url_for('delete_review', book_id=book_id, review_id=review._id)}}"
                         class="transparent right red-text btn-flat"><i
-                        class="material-icons">delete_forever</i>Delete</a>
-                      <a href="{{url_for('edit_review', book_id=book_id, review_id=review._id)}}"
-                        class="transparent right teal-text btn-flat"><i
-                        class="material-icons">create</i>Edit</a>
+                        class="material-icons">delete_forever</i></a>
+
                     </div>
                 </div>
             </div>
