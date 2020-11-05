@@ -1,5 +1,22 @@
-.star-rating {
+body {
+ min-width: 325px;
+}
+
+.star-rating-container > img {
+    width: 50%;
+}
+
+.main-review-rating {
+    width: 150px;
+}
+
+.review-rating {
     width: 100px;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-logo {
+ font-family: 'Oswald', sans-serif;
+ text-transform: uppercase;
 }
 
 .row {
@@ -22,6 +39,10 @@
 
 .card-reveal .btn {
     width: 50%;
+}
+
+.review-edit-button {
+    padding: 5px;
 }
 
 @media only screen and (min-width: 993px) {

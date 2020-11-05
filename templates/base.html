@@ -6,13 +6,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300|Oswald" rel="stylesheet">
   <title>Book Review</title>
 </head>
 <body>
   <header>
     <nav>
       <div class="nav-wrapper teal">
-        <a href="{{url_for('view_books')}}" class="brand-logo">Book Review</a>
+        <a href="{{url_for('view_books')}}" class="brand-logo center"><i class="material-icons left">menu_book</i>Book Review</a>
         <a href="{{url_for('view_books')}}" data-target="mobile-demo" class="sidenav-trigger"><i
             class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
