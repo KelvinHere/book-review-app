@@ -1,5 +1,11 @@
 body {
- min-width: 325px;
+  min-width: 325px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-logo {
+ font-family: 'Oswald', sans-serif;
+ text-transform: uppercase;
 }
 
 .star-rating-container > img {
@@ -12,11 +18,6 @@ body {
 
 .review-rating {
     width: 100px;
-}
-
-h1, h2, h3, h4, h5, h6, .brand-logo {
- font-family: 'Oswald', sans-serif;
- text-transform: uppercase;
 }
 
 .row {
