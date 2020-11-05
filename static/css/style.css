@@ -2,17 +2,18 @@
     width: 100px;
 }
 
-.card-image {
-    height: 200px;
-}
-
-.card-image-element {
-    height: 200px;
-    object-fit: scale-down;
+.row {
+    margin-bottom: 10px;
 }
 
 .hr-card {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.card-image-element {
+    margin-top: 24px;
+    height: 200px;
+    object-fit: scale-down;
 }
 
 .card-content .btn {
@@ -23,3 +24,8 @@
     width: 50%;
 }
 
+@media only screen and (min-width: 993px) {
+  .card-image-element {
+    height: 400px;
+  }
+}

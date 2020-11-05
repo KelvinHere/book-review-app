@@ -1,7 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-{{rating}}
-
-<section class="row body-container">
+<section class="row search-container">
   <ul class="collapsible col s12 m6 l4 offset-m3 offset-l4">
     <li>
       <div class="collapsible-header"><i class="material-icons">sort</i>Sort Books</div>
@@ -73,10 +71,11 @@
     </li>
   </ul>
 </section>
+<p class="center-align">Click a cover for more info</p>
 <section class="row book-card-container">
   {% for book in books %}
   <div class="col s12 m6 l4 center-align">
-    <div class="card-container">
+    <div class="card">
       <div class="card hoverable">
         <div class="card-image waves-effect waves-block waves-light">
           <img class="activator card-image-element" src="{{book.link}}" alt="Book Cover for {{book.title}}" />
