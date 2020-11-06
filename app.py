@@ -138,6 +138,7 @@ def delete_review(book_id, review_id):
     return redirect(url_for('view_reviews', book_id=book_id))
 
 
+@app.route('/check_review_score<score>')
 def check_review_score(score):
     score = int(score)
     if score > 10:
