@@ -16,11 +16,10 @@ class AppRouteTests(unittest.TestCase):
         # Check index loads with content
         tester = app.test_client(self)
         response = tester.get("/")
-        decoded = response.data.decode('utf-8')
-        statuscode = response.status_code
-        print(statuscode)
-        self.assertEqual(statuscode, 200)
-        assert 'Click a cover for more info' in decoded
+        # Check the status_code in response is 200
+        self.assertEqual(response.status_code, 200)
+        # Turn searched message into bytes literal and find in response
+        self.assertTrue(b'Click a cover for more info' in response.data)
 
 
 class TestReviewScoreValidation(unittest.TestCase):
