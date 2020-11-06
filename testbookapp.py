@@ -1,5 +1,7 @@
 import unittest
-from app import app
+import app as appModule
+
+app = appModule.app
 
 # Set app to use local mongoDB database
 app.config.update({
@@ -12,11 +14,12 @@ print(app.config['MONGO_URI'])
 
 class AppRouteTests(unittest.TestCase):
 
+    def setUp(self):
+        self.app = app.test_client(self)
+
     def test_index(self):
         # Check index loads with content
-        tester = app.test_client(self)
-        response = tester.get("/")
-        # Check the status_code in response is 200
+        response = self.app.get("/")
         self.assertEqual(response.status_code, 200)
         # Turn searched message into bytes literal and find in response
         self.assertTrue(b'Click a cover for more info' in response.data)
@@ -25,9 +28,8 @@ class AppRouteTests(unittest.TestCase):
 class TestReviewScoreValidation(unittest.TestCase):
 
     def test_score_too_high(self):
-        tooBig = app.test_client('/check_review_score/12')
-        print(tooBig)
-        #self.assertEqual(tooBig, 10)
+        result = appModule.check_review_score(90)
+        self.assertEqual(result, 10)
 
 
 if __name__ == "__main__":
