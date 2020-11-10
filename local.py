@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 print('##################')
 appt = Flask(__name__)
 appt.config["MONGO_DBNAME"] = "book_app_db"
-appt.config["MONGO_URI"] = 'mongodb://localhost:27017/testBookDb'
+appt.config["MONGO_URI"] = 'mongodb://localhost:27017/testdb'
 mongo = PyMongo(appt)
 
 appt.config.update({
