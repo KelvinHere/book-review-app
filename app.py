@@ -42,7 +42,7 @@ def insert_book():
     # Initialise variables not included in form
     formResults['rating'] = 0
     formResults['reviews'] = []
-    mongo.db.books.insert(formResults)
+    mongo.db.books.insert_one(formResults)
     return redirect(url_for('view_books'))
 
 

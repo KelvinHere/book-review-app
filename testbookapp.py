@@ -14,17 +14,6 @@ app.config.update({
 mongo = PyMongo(app)  # Setup mongoDB with Flaskapp
 appModule.mongo = mongo  # Inject this new database into app.py
 
-
-###Commands to check test database is working
-#mongo.db.books.insert_one({'TestTitle': 'TitleContent'})
-#books = mongo.db.books.find()
-#for each in books:
-#    print(each)
-#colls = mongo.db.list_collection_names()
-#for each in colls:
-#    print(each)
-
-
 class MongoDbTests(unittest.TestCase):
 
     def setUp(self):

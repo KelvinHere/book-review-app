@@ -1,1 +1,3 @@
 Genres are not completely alphabetical
+
+mongod --dbpath dbname to create database
