@@ -57,7 +57,7 @@ def update_book(book_id):
     # Format form results before submitting to database
     formResults['title'] = formResults['title'].lower()
     formResults['author'] = formResults['author'].lower()
-    mongo.db.books.update({'_id': ObjectId(book_id)},
+    mongo.db.books.update_one({'_id': ObjectId(book_id)},
                               {'$set': {
                                 'title': formResults['title'],
                                 'author': formResults['author'],
@@ -71,7 +71,7 @@ def update_book(book_id):
 
 @app.route('/delete_book/<book_id>')
 def delete_book(book_id):
-    mongo.db.books.remove({'_id': ObjectId(book_id)})
+    mongo.db.books.delete_one({'_id': ObjectId(book_id)})
     return redirect(url_for('view_books'))
 
 

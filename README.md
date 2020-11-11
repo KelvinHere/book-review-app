@@ -83,6 +83,8 @@ Books average score only updates when a new review for that book is added
  
 ##### Near Future
 
+- Add sort by genre feature
+
 ##### Far Future
 
 ### Changes in Development
