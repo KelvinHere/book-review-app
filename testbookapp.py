@@ -93,7 +93,6 @@ class MongoDbTests(unittest.TestCase):
         self.assertTrue(b'star-10.png' in response.data)  # Image name for star rating
         self.assertTrue(b'sample test review content' in response.data)  # Review
 
-
     def test_update_review(self):
         # Test reviews can be updated from form data by bookId and reviewId
         bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
@@ -111,6 +110,21 @@ class MongoDbTests(unittest.TestCase):
         self.assertTrue(b'star-5.png' in response.data)  # Image name for star rating
         self.assertTrue(b'updated review content' in response.data)  # Review
 
+
+    def test_delete_review(self):
+        # Test a review can be deleted given a bookId and reviewId
+        bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
+        # Create test review and retrieve its ID
+        add_test_review(bookId)
+        book = list(mongo.db.books.find({'_id': ObjectId(bookId)}))
+        reviewId = book[0]['reviews'][0]['_id']
+
+        self.app.get(f'/delete_review/{bookId}/{reviewId}')
+        response = self.app.get(f'/view_reviews/{bookId}')
+        # Assert all relevent book information is present on view books page
+        self.assertFalse(b'Reviewer Test Name' in response.data)  # Reviewer Name
+        self.assertFalse(b'star-5.png' in response.data)  # Image name for star rating
+        self.assertFalse(b'updated review content' in response.data)  # Review
 
 class AppRouteTests(unittest.TestCase):
     # Test all app routes that only read from the database
@@ -177,8 +191,17 @@ class TestReviewScoreValidation(unittest.TestCase):
         result = appModule.check_review_score(90)
         self.assertEqual(result, 10)
 
+    def test_score_too_low(self):
+        result = appModule.check_review_score(-20)
+        self.assertEqual(result, 0)
+
+    def test_score_string_to_int(self):
+        result = appModule.check_review_score("6")
+        self.assertEqual(result, 6)
+
 
 def add_book_return_cursor():
+    # Add a book for testing
     mongo.db.books.insert_one({'title': 'my test title',
                                'author': 'author test',
                                'rating': 0,
@@ -191,11 +214,13 @@ def add_book_return_cursor():
 
 
 def get_id_from_cursor(cursor):
+    # Get book ID from cursor
     bookId = (cursor['_id'])
     return bookId
 
 
 def add_test_review(bookId):
+    # Add a review for testing
     mongo.db.books.update_one({'_id': ObjectId(bookId)},
                               {"$push": {'reviews':
                                          {'_id': ObjectId(),
@@ -203,15 +228,6 @@ def add_test_review(bookId):
                                           'rating': 10,
                                           'review': 'sample test review content'}}})
 
-
-#Look inside database TEMP
-#books = mongo.db.books.find()
-#for each in books:
-#    print(each)
-#colls = mongo.db.list_collection_names()
-#for each in colls:
-#    print(each)
-#print('')
 
 if __name__ == "__main__":
     unittest.main
