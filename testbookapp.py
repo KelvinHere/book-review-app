@@ -94,9 +94,22 @@ class MongoDbTests(unittest.TestCase):
         self.assertTrue(b'sample test review content' in response.data)  # Review
 
 
-    def test_updatE_review(self):
+    def test_update_review(self):
         # Test reviews can be updated from form data by bookId and reviewId
-        
+        bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
+        # Create test review and retrieve its ID
+        add_test_review(bookId)
+        book = list(mongo.db.books.find({'_id': ObjectId(bookId)}))
+        reviewId = book[0]['reviews'][0]['_id']
+
+        self.app.post(f'update_review/{bookId}/{reviewId}', follow_redirects=True, data=dict(new_rating='5',
+                                                                                             new_review="updated review content"))
+        response = self.app.get(f'/view_reviews/{bookId}')
+        # Assert all relevent book information is present on view books page
+        self.assertTrue(b'My Test Title reviews' in response.data)  # Page title
+        self.assertTrue(b'Reviewer Test Name' in response.data)  # Reviewer Name
+        self.assertTrue(b'star-5.png' in response.data)  # Image name for star rating
+        self.assertTrue(b'updated review content' in response.data)  # Review
 
 
 class AppRouteTests(unittest.TestCase):
@@ -147,9 +160,11 @@ class AppRouteTests(unittest.TestCase):
     def test_edit_review(self):
         # Test edit_review can retrieve reviews from DB
         bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
+        # Create test review and retrieve its ID
         add_test_review(bookId)
         book = list(mongo.db.books.find({'_id': ObjectId(bookId)}))
         reviewId = book[0]['reviews'][0]['_id']
+
         response = self.app.get(f"/edit_review/{bookId}/{reviewId}")
         self.assertTrue(b'Edit this review' in response.data)  # Page title
         self.assertTrue(b'value="10" selected>5 Star' in response.data)  # Pre selected star rating
