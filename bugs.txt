@@ -3,3 +3,5 @@ Genres are not completely alphabetical
 mongod --dbpath dbname to create database
 
 Do update_average_score_test
+
+make synopsis text more bold

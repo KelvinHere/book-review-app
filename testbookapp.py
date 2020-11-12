@@ -97,7 +97,7 @@ class MongoDbTests(unittest.TestCase):
         # Test reviews can be updated from form data by bookId and reviewId
         bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
         # Create test review and retrieve its ID
-        add_test_review(bookId)
+        add_test_review(bookId, 10)
         book = list(mongo.db.books.find({'_id': ObjectId(bookId)}))
         reviewId = book[0]['reviews'][0]['_id']
 
@@ -115,7 +115,7 @@ class MongoDbTests(unittest.TestCase):
         # Test a review can be deleted given a bookId and reviewId
         bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
         # Create test review and retrieve its ID
-        add_test_review(bookId)
+        add_test_review(bookId, 10)
         book = list(mongo.db.books.find({'_id': ObjectId(bookId)}))
         reviewId = book[0]['reviews'][0]['_id']
 
@@ -125,6 +125,21 @@ class MongoDbTests(unittest.TestCase):
         self.assertFalse(b'Reviewer Test Name' in response.data)  # Reviewer Name
         self.assertFalse(b'star-5.png' in response.data)  # Image name for star rating
         self.assertFalse(b'updated review content' in response.data)  # Review
+
+
+    def test_update_average_score(self):
+        # Test update average score updates books average rating
+        bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
+        add_test_review(bookId, 10)
+        add_test_review(bookId, 10)
+        add_test_review(bookId, 0)
+        add_test_review(bookId, 0)
+        bookRating = list(mongo.db.books.find({'_id': ObjectId(bookId)}))[0]['rating']
+        self.assertEqual(bookRating, 0) #  Inital rating should be zero
+        appModule.update_average_score(bookId) #  Update average score
+        bookRating = list(mongo.db.books.find({'_id': ObjectId(bookId)}))[0]['rating']
+        self.assertEqual(bookRating, 5) #  Average rating from reviews
+
 
 class AppRouteTests(unittest.TestCase):
     # Test all app routes that only read from the database
@@ -175,7 +190,7 @@ class AppRouteTests(unittest.TestCase):
         # Test edit_review can retrieve reviews from DB
         bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
         # Create test review and retrieve its ID
-        add_test_review(bookId)
+        add_test_review(bookId, 10)
         book = list(mongo.db.books.find({'_id': ObjectId(bookId)}))
         reviewId = book[0]['reviews'][0]['_id']
 
@@ -219,13 +234,13 @@ def get_id_from_cursor(cursor):
     return bookId
 
 
-def add_test_review(bookId):
+def add_test_review(bookId, rating):
     # Add a review for testing
     mongo.db.books.update_one({'_id': ObjectId(bookId)},
                               {"$push": {'reviews':
                                          {'_id': ObjectId(),
                                           'reviewer': 'reviewer test name',
-                                          'rating': 10,
+                                          'rating': rating,
                                           'review': 'sample test review content'}}})
 
 
