@@ -1,13 +1,13 @@
 # Unit tests for "Book Review App"
 # These test all views and functions of app.py
-
+# To run these tests :-
+#       Start mongod using "mongod --dbpath testdb"
+#       Run tests with "python 3 -m unittest testbookapp.py -v"
 
 import unittest
 import app as appModule
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-
-# Start mongod before running unit tests "mongod --dbpath testdb"
 
 # Grap book review app
 app = appModule.app
@@ -29,7 +29,6 @@ class MongoDbTests(unittest.TestCase):
         self.app = app.test_client(self)
 
     def tearDown(self):
-        # Remove all test database entries
         mongo.db.books.delete_many({})
 
     def test_insert_book(self):
@@ -148,7 +147,6 @@ class AppRouteTests(unittest.TestCase):
         self.app = app.test_client(self)
 
     def tearDown(self):
-        # Remove all test database entries
         mongo.db.books.delete_many({})
 
     def test_view_books_page(self):
@@ -163,6 +161,26 @@ class AppRouteTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         # Turn searched message into bytes literal and find in response
         self.assertTrue(b'Add a book' in response.data)
+
+    def test_sort_books(self):
+        # Check after sort is submitted the order is passed to new page
+        # Rating Descending
+        response = self.app.post(f'sort_books', follow_redirects=True, data=dict(sortField='rating',
+                                                                         sortDirection='-1')) 
+        self.assertTrue(b'<input value="rating" name="sortField" id="rating" type="radio" checked />' in response.data)
+        self.assertTrue(b'<input value="1" name="sortDirection" id="-1"' in response.data)
+
+        # Author Ascending
+        response = self.app.post(f'sort_books', follow_redirects=True, data=dict(sortField='author',
+                                                                         sortDirection='1'))
+        self.assertTrue(b'<input value="author" name="sortField" id="author" type="radio" checked />' in response.data)
+        self.assertTrue(b'<input value="1" name="sortDirection" id="1"' in response.data)
+
+        # Title Descending
+        response = self.app.post(f'sort_books', follow_redirects=True, data=dict(sortField='title',
+                                                                         sortDirection='-1'))
+        self.assertTrue(b'<input value="title" name="sortField" id="title" type="radio" checked />' in response.data)
+        self.assertTrue(b'<input value="1" name="sortDirection" id="-1"' in response.data)
 
     def test_add_review_page(self):
         # Test add review fetches and presents book data from database _id
@@ -215,6 +233,7 @@ class TestReviewScoreValidation(unittest.TestCase):
         self.assertEqual(result, 6)
 
 
+# Functions to place dummy data into test databse
 def add_book_return_cursor():
     # Add a book for testing
     mongo.db.books.insert_one({'title': 'my test title',
