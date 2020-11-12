@@ -1,5 +1,7 @@
 # Book Review App - Data centric development</h1>
- 
+
+!Remove development server before deploying
+
 Book Review App
  
 The user is presented with a list of books, they can read and write reviews and have access to links to buy the books they may like.
