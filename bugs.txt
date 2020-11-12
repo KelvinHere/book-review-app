@@ -1,4 +1,0 @@
-
-mongod --dbpath dbname to create database
-
-make synopsis text more bold
