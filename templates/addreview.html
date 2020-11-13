@@ -32,10 +32,18 @@
       <label for="review">Review</label>
     </div>
     <input type="hidden" name="book_id" value="{{book._id}}" />
-    <button class="btn waves-effect waves-light" type="submit">
-      Submit Review
-      <i class="material-icons right">add_circle</i>
-    </button>
+    <div class="row">
+      <div class="col s6 margin-top">
+        <button class="btn waves-effect waves-light width-to-container-90" type="submit">
+          Submit Review
+          <i class="material-icons right">add_circle</i>
+        </button>
+      </div>
+      <div class="col s6 margin-top">
+        <a href="{{url_for('view_books')}}" class="waves-effect waves-light width-to-container-90 red btn right"><i
+          class="material-icons right">cancel</i>Cancel</a>
+      </div>
+    </div>
   </form>
 </div>
 {% endblock %}

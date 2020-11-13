@@ -19,6 +19,13 @@ h1, h2, h3, h4, h5, h6, .brand-logo .title-text {
   font-weight: 600;
 }
 
+.width-to-container-90 {
+    width: 90%;
+}
+
+.margin-top {
+    margin-top: 20px;
+}
 
 .star-rating-container > img {
     width: 50%;
