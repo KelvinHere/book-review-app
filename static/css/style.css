@@ -4,9 +4,14 @@ body {
   font-weight: 600;
 }
 
-h1, h2, h3, h4, h5, h6, .brand-logo {
+h1, h2, h3, h4, h5, h6, .brand-logo .title-text {
  font-family: 'Oswald', sans-serif;
  text-transform: uppercase;
+}
+
+.close-reveal, .open-reveal {
+    position: absolute;
+    right: 15px;
 }
 
 .bold-title {

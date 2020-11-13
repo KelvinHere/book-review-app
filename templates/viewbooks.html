@@ -84,7 +84,7 @@
           <span class="card-title activator grey-text text-darken-4">
             <p class="bold-title">{{book.title.title()}}</p>
             <p>
-              By {{book.author.title()}}<i class="material-icons right">more_vert</i>
+              By {{book.author.title()}}<i class="material-icons right open-reveal">more_vert</i>
             </p>
           </span>
           <hr class="hr-card" />
@@ -119,9 +119,11 @@
           </div>
         </div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <h4 class="align-center">{{book.title.title()}}</h4>
-          <p>by {{book.author.title()}}</p>
+          <span class="card-title grey-text text-darken-4"><i class="material-icons right close-reveal">close</i></span>
+          <div class="book-info-container">
+            <h4 class="center-align">{{book.title.title()}}</h4>
+            <p class="center-align">by {{book.author.title()}}</p>
+          </div>
           <div class="star-rating-container">
             <img src="{{url_for('static', filename='images/stars/star-')}}{{book.rating}}.png"
               alt="{{book.rating}} stars image" class="star-rating responsive-img" />
