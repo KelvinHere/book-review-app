@@ -123,6 +123,7 @@
           <div class="book-info-container">
             <h4 class="center-align">{{book.title.title()}}</h4>
             <p class="center-align">by {{book.author.title()}}</p>
+            <p class="center-align">{{book.genre.title()}}
           </div>
           <div class="star-rating-container">
             <img src="{{url_for('static', filename='images/stars/star-')}}{{book.rating}}.png"

@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="input-field col s12">
-      <select id="genre" name="genre">
-        <option value="" disabled selected required>Set Genre</option>
+      <select id="genre" name="genre" required>
+        <option value="" disabled selected>Set Genre</option>
         {% for genre in genres %}
         <option value="{{genre.genre_name}}">{{genre.genre_name}}</option>
         {% endfor %}
@@ -38,7 +38,7 @@
     </div>
     <div class="input-field col s12">
       <i class="material-icons prefix">description</i>
-      <textarea name="summary" id="summary" class="materialize-textarea"></textarea>
+      <textarea name="summary" id="summary" class="materialize-textarea" required></textarea>
       <label for="summary">Summary</label>
     </div>
     <div class="row">
