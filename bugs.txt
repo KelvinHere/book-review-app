@@ -2,8 +2,4 @@ how can i get local os.env variables over
 
 how can someone run unit tests locally without installing mongodb?  Should I just say use gitpod?
 
-add cancel button to edit book and review
-
-add modal for delete button
-
 add favicon

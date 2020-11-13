@@ -45,12 +45,37 @@
       <textarea name="summary" id="summary" class="materialize-textarea">{{book.summary}}</textarea>
       <label for="summary">Summary</label>
     </div>
-    <button class="btn waves-effect waves-light" type="submit">
-      Update Book
-      <i class="material-icons right">playlist_add</i>
-    </button>
-    <a href="{{url_for('delete_book', book_id=book._id)}}" class="waves-effect waves-light right btn red"><i
-        class="material-icons right">delete_forever</i>Delete</a>
+    <div class="row">
+      <div class="col s6 margin-top">
+        <button class="btn waves-effect waves-light update-buttons-resize" type="submit">
+          Update Book
+          <i class="material-icons right">playlist_add</i>
+        </button>
+      </div>
+      <div class="col s6 margin-top">
+        <a href="#delete-book-modal" class="waves-effect waves-light modal-trigger right btn red update-buttons-resize"><i
+          class="material-icons right">delete_forever</i>Delete Book</a>
+      </div>
+    </div>
   </form>
+</div>
+<!-- Delete book modal -->
+<div id="delete-book-modal" class="modal">
+  <div class="modal-content">
+    <h4 class="center-align">Delete {{book_id}}</h4>
+    <p class="center-align margin-top">Are you sure you want to delete this book and all of its reviews.</p>
+    <p class="center-align">This operation cannot be undone.</p>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="col s6 margin-top">
+        <a href="#!" class="modal-close waves-effect waves-light update-buttons-resize btn right">Cancel</a>
+      </div>
+      <div class="col s6 margin-top">
+        <a href="{{url_for('delete_book', book_id=book._id)}}" class="waves-effect waves-light right btn red update-buttons-resize"><i
+          class="material-icons right">delete_forever</i>Delete Book</a>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
