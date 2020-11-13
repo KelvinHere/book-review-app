@@ -108,7 +108,7 @@ def insert_review():
                                           'review': formResults['review']}}})
     # Update average book score
     update_average_score(formResults['book_id'])
-    return redirect(url_for('view_books'))
+    return redirect(url_for('view_reviews', book_id=formResults['book_id']))
 
 
 @app.route('/edit_review/<book_id>/<review_id>')
