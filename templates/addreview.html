@@ -34,14 +34,13 @@
     <input type="hidden" name="book_id" value="{{book._id}}" />
     <div class="row">
       <div class="col s6 margin-top">
-        <button class="btn waves-effect waves-light width-to-container-90" type="submit">
+        <button class="btn waves-effect waves-light update-buttons-resize" type="submit">
           Submit Review
           <i class="material-icons right">add_circle</i>
         </button>
       </div>
       <div class="col s6 margin-top">
-        <a href="{{url_for('view_books')}}" class="waves-effect waves-light width-to-container-90 red btn right"><i
-          class="material-icons right">cancel</i>Cancel</a>
+        <a href="{{url_for('view_books')}}" class="waves-effect waves-light update-buttons-resize red btn right">Cancel</a>
       </div>
     </div>
   </form>

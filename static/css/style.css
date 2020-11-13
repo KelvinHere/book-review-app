@@ -19,8 +19,8 @@ h1, h2, h3, h4, h5, h6, .brand-logo .title-text {
   font-weight: 600;
 }
 
-.width-to-container-90 {
-    width: 90%;
+.update-buttons-resize {
+    width: 100%;
 }
 
 .margin-top {
@@ -69,8 +69,17 @@ h1, h2, h3, h4, h5, h6, .brand-logo .title-text {
     width: 50%;
 }
 
+@media only screen and (min-width: 768px) {
+  .update-buttons-resize {
+    width: 75%;
+  }
+
 @media only screen and (min-width: 993px) {
   .card-image-element {
     height: 400px;
+  }
+
+  .update-buttons-resize {
+    width: 50%;
   }
 }
