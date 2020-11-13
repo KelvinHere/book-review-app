@@ -1,34 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="center-align container section">
-    <h5>Edit this review</h5>
+    <h3>Edit this review</h3>
 </div>
-<div class="row">
+<div class="row container section">
   <form class="col s12" action="{{url_for('update_review', book_id=book_id, review_id=review_id)}}" method="POST">
-  <div class="input-field col s12">
-        <i class="material-icons prefix">star_rate</i>
+    <div class="input-field col s12">
+      <i class="material-icons prefix">star_rate</i>
         <select id="new_rating" name="new_rating" required>
-            {% for i in range(11) %}
-                {% if i % 2 == 0 %}
-                    {% if i == rating %}
-                        <option value="{{rating}}" selected>{{i//2}} Star</option>
-                    {% else %}
-                        <option value="{{i}}">{{i//2}} Star</option>
-                    {% endif %}
-                {% endif %}
+          {% for i in range(11) %}
+            {% if i % 2 == 0 %}
+              {% if i == rating %}
+                <option value="{{rating}}" selected>{{i//2}} Star</option>
+              {% else %}
+                <option value="{{i}}">{{i//2}} Star</option>
+              {% endif %}
+            {% endif %}
           {% endfor %}
         </select>
-        <label>Star Rating</label>
-      </div>
+      <label>Star Rating</label>
+    </div>
     <div class="input-field col s12">
       <i class="material-icons prefix">description</i>
       <textarea name="new_review" id="new_review" class="materialize-textarea">{{review}}</textarea>
       <label for="new_review">Review</label>
     </div>
-    <button class="btn waves-effect waves-light" type="submit">
-      Update Review
-      <i class="material-icons right">playlist_add</i>
-    </button>
+    <div class="row">
+      <div class="col s6 margin-top">
+        <button class="btn waves-effect waves-light update-buttons-resize" type="submit">
+          Update Review
+          <i class="material-icons right">playlist_add</i>
+        </button>
+      </div>
+      <div class="col s6 margin-top">
+        <a href="{{url_for('view_reviews', book_id=book_id)}}"
+          class="waves-effect waves-light btn right update-buttons-resize red">Cancel</a>
+      </div>
+    </div>
   </form>
 </div>
 {% endblock %}
