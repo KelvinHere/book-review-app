@@ -1,10 +1,12 @@
-# Book Review App - Data centric development</h1>
+# Book Review App - Data centric development
 
-!Remove development server before deploying
+****!Remove development server before deploying****
 
 Book Review App
  
-The user is presented with a list of books, they can read and write reviews and have access to links to buy the books they may like.
+A book review app where users can read and write reviews on books, with 
+links to buy these books.  If a book is not on the app a user can create
+it.
  
 * [Live link to site](https://book-review-kelvinhere.herokuapp.com/ 'Heroku live link to app')
 * [This Repository](https://github.com/KelvinHere/book-review-app 'Github repository link')
@@ -17,6 +19,7 @@ The user is presented with a list of books, they can read and write reviews and 
    * [**User Stories**](#user-stories)
    * [**Business and Developer Goals**](#business-and-developer-goals)
    * [**Design Choices**](#design-choices)   
+       * [*General Design*](#general-design)
        * [*Colours and Fonts*](#colours-and-fonts)
 2. [**Features**](#features)
    * [**Existing Features**](#existing-features)
@@ -36,10 +39,88 @@ The user is presented with a list of books, they can read and write reviews and 
  
 #### Project Purpose
 
-The purpose of this project is to create an application where poeple can review books they have read.
+The purpose of this project is to create an application where poeple can review books
+they have read and find new books they might enjoy from a description and reviews.
+
+#### Wireframe Designs
+
+The home page will responsivley display book cards
+![Book View]( "Book view wireframe image")
+On clicking the book covers you will be shown a reveal with extra information
+![Book View]( "Book view revealed wireframe image")
+Viewing reviews
+![Book View]( "View reviews wireframe image")
+All input forms will take the style below, this will cover adding or editing a book or review.
+![Book View]( "Form wireframe image")
+
+#### User Stories
+
+As a user I want
+1. To find out more about a book quickly, because I don't have much time.
+1. To read reviews on a book I think I may like, because I want opinions before I buy it.
+1. To buy a book I just read reviews on, because it confirmed I will probably like it.
+1. To find the highest rated book, because I want to see what 'is in'.
+1. To buy a book with the worst overall rating, because I enjoy b-movies more than I should.
+1. To view all of an authors books, because I will probably enjoy another book of the same author.
+1. To view titles in alphabetical order, becuase I kind of know what a book is called and this could help.
+1. To write a review on a book I have just read, because I want people to know how great/bad it was.
+1. To edit a review I just wrote, because I changed my mind on how I feel about it.
+1. To delete a review, because I don't want people knowing I have read this book.
+1. To be able to create a book entry because it does not already exist and I want to review it.
+1. I want to update some incorrect information in a books details.
+1. To delete a book I created.
+
+#### Business Goals
+
+The business purpose of this app is to engage the user with a list of books they can enjoy, 
+the user can browse books, reviews and click affiliate links to buy books, earning the 
+owner of the app money.
+
+#### Developer Goals
+
+Each feature must be well programmed, function properly and tested to be bug free.  This 
+will display a professional use of the programming languages and test suite.
+ 
+This project will display I have an understanding of how to integrate a database into an app
+and perform CRUD operations on the database from a frontend.
+
+To show an understanding of Flask, Python, MongoDB, Javascript, jQuery,
+Materialize, HTML, CSS, Unittests and how they all interact to form a final product.
+ 
+#### Design Choices
+
+##### General Design
+
+Materialize with cards was used to create an app that will be instantly familiar with anyone
+who has used a google product, allowing a large amount of users to instantly begin browsing
+the app.
+
+The design was made minimal with a very clean look to avoid information overload on smaller
+screens and allow the book covers to draw most attention.  The site is made mobile first and
+to be responsive to screen size, allowing larger screens to show more books at once.
+
+As the database of books grows, it will be harder to find a book you may be looking for, so
+a search by title, rating and author was introduced.
+
+Navigation and selection are consistent throuought the app.
+
+##### Colours and Fonts
+
+The font 'Oswald' was used in busy areas where needed and the branding, as it is heavy enough 
+to draw attention to its self even if there is a lot of other text on the screen, such as a synopsis.
+
+For sub text, such as reviews and descriptions I used the font 'Quicksand', this font is easy to read and
+looks 'tidy' helping the app look professional.
+
+For the main site colours I used Teal and White, I went two tone as I wanted the color focus to be on the
+book covers and help the star ratings stand out.  The majority of the site is shadowed cards with Teal
+for the header and most buttons.  The only exceptions to this are the edit button (yellow) and the delete
+buttons (red), these stand out warning colours should give the user an idea they might want to think
+before clicking.
+
+## Features
 
 Using this app you will be able to  :-
-
 - Create
     - A book
     - A review with a score
@@ -51,32 +132,12 @@ Using this app you will be able to  :-
 
 - Update
     - A books information
+    - A review in a book
 
 - Delete 
     - A book from the database
     - A review from a book
 
-
-#### Wireframe Designs
-
-#### User Stories
-
-#### Business and Developer Goals
-
-The business purpose of this app is to engage the user with a list of books they can enjoy, if a user likes a book they will be able to buy it from an affiliate link, earning the owner of the link money.
-
-Each feature must be well programmed, function properly and be bug free.  This will display a professional use of the programming language and test suite.
- 
-Defensive programming must be used to avoid users destroying or corrupting the databse via bad input.
-
-This milestone project will show an understanding of Flask, Python, MongoDB, Javascript, jQuery, HTML, CSS, the DOM and how they all interact to form a final product.
- 
-#### Design Choices
- 
-##### Colours and Fonts
-
-## Features
- 
 ### Existing Features
 
 Books average score only updates when a new review for that book is added
@@ -89,7 +150,9 @@ Books average score only updates when a new review for that book is added
 
 ##### Far Future
 
-### Changes in Development
+- Add login system so
+    1. Users can only edit and delete their own reviews
+    1. Only an administrator can delete a book
 
 ## Testing
  
@@ -97,66 +160,65 @@ TESTING LINK HERE
 
 ## Technologies Used
 
-NOT YET UPDATED
-
-- **HTML5/CSS3** - Languages
-   - Industry standard web development
-- [Javascript](https://www.javascript.com/) - Programming Language
-   - Used to create the logic for the matching game.
+- **HTML5/CSS3**
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) - Web framework
+- [MongoDB](www.mongodb.com) - NoSQL Database
+- [Materialize](https://materializecss.com/) - Frontend framework
+- [Unittest](https://docs.python.org/3/library/unittest.html) - Python unit testing framework
+- [Python](https://www.python.org/) Programming language
+- [Javascript](https://www.javascript.com/) Programming language
 - [jQuery](https://jquery.com/) - JavaScript Library
-   - Used to simplify DOM traversal and manipulation
-- [Jasmin](https://jasmine.github.io/) - Testing
-   - A behavior-driven development framework for testing JavaScript code.
-- [Gitpod](https://www.gitpod.com) - IDE
-   - Used for its one stop contained development workflow via browser
-- [Git](https://git-scm.com/) - Version-control system
-   - Used to version control the project
+- [Heroku](https://www.heroku.com/) - Cloud Application Platform
+- [Gitpod](https://www.gitpod.com) - Development enviroment
+- [Git](https://git-scm.com/) - Version control
 - [Github](https://www.github.com) - Code hosting platform
-   - Was used for its robust repository system and ability to view website through **GitHub Pages**
-- [Draw.io](https://www.draw.io/) - Wireframing tool
-   - Used for rapid wireframe prototyping
-- [GNU Image Manipulation Program](https://www.gimp.org/) - Image editing software
-   - Used to edit images for the website
+- [Draw.io](https://www.draw.io/) -Prototyping wireframing tool
+- [Photoshop CS](https://www.adobe.com/) - Image editing software
  
 ## Deployment
 
-### Prerequisites
-`pip3 install flask`
-`pip3 install flask-pymongo`
-`pip3 install dnspython`
-
-UPDATE TO HEROKU DEPLOYMENT
-
-This project was created in Git Pod and version controlled through 'Git', the project was committed and pushed to GitHub where it is hosted through GitHub Pages.
- 
-The deployed version of Pairs was hosted on GitHub Pages using the following steps :-
- 
-1. Login to KelvinHere on [GitHub](https://github.com/).
-2. Select the [Milestone-Interactive](https://github.com/KelvinHere/Milestone-Interactive) repository.
-3. Select 'Settings' for this repository and scroll down to Github Pages.
-4. Click 'Source' and change the source to be the master branch.
-5. A link will appear this is the address of the live page, changes can take up to 5-10 minutes to appear.
- 
-Add this repository to your local workspace by :-
- 
-1. Opening the [Milestone-Interactive](https://github.com/KelvinHere/Milestone-Interactive) repository.
-2. Click the green 'Code' button and then copy the 'Clone with HTTPS' URL.
-3. In your local workspace open a terminal.
-4. From inside the directory you want to copy the clone to, type `git clone` and paste the URL you copied from GitHub then press enter.  Example below.
- 
-`git clone https://github.com/KelvinHere/example.git`
- 
-5. Cloning will be completed when your terminal is waiting for its next command.
-6. For more information or changes in the cloning procedure [>Click Here<](https://github.com/git-guides/git-clone)
+This project was created in [GitPod](https://gitpod.io/) with the [Code Institute template](https://github.com/Code-Institute-Org/gitpod-full-template) and version controlled through 'Git', the project was committed and pushed to [GitHub](https://github.com/).
+The project was then deployed to [Heroku](https://www.heroku.com/).
 
 Project Development :-
 * This project was developed using GitPod.
-* After files are created or modified they are committed to a GitHub repository by :-
-    - adding the modified files locally using `git add .`
+* After files are created or modified they are committed to a GitHub repository using git by :-
+    - adding the modified files locally using `git add .` or `git add filename.extension`
     - commiting the modified files with a message of changes using `git commit -m "changes here"`
     - pushing the new commit to the master branch on GitHub repository with `git push`
+    - updating an out of date local branch with `git fetch origin` and pulling changes with `git pull origin`
 
-* During development a new branch on GitHub was created via pull request.  This was for a major change to the code (the game board was refactored to an object) and allowed experimentation without affecting the master branch.  This new branch worked out well and was merged into the master branch.
+### Local Deployment
+ 
+Clone this repository to your local workspace by :-
+ 
+1. Opening the [Book Review App](https://github.com/KelvinHere/book-review-app) repository.
+2. Click the 'Code' button and then copy the 'Clone with HTTPS' URL.
+3. In your local workspace open a terminal.
+4. From inside the directory you want the clone, type `git clone` and paste the URL you copied from GitHub then press enter.  Example below.
+ 
+`git clone https://github.com/KelvinHere/book-review-app.git`
+ 
+5. Cloning will be completed when your terminal is waiting for its next command.
+6. For more information or changes in the cloning procedure at this link [Git Clone](https://github.com/git-guides/git-clone).
+
+### Heroku Deployment
+ 
+The deployed version of 'Book Review' is hosted on Heroku and was deployed with the following steps.
+
+Create a Heroku account, create a new
+
+then from your local deployment
+
+`$ heroku login -i` and enter your login details
+
+`$ heroku git:clone -a book-review-kelvinhere`
+`$ cd book-review-kelvinhere`
+
+`$ git add .`
+`$ git commit -am "make it better"`
+`$ git push heroku master`
+
 
 ## Credits
 ### Content
