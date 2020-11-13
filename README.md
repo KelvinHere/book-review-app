@@ -17,12 +17,17 @@ it.
    * [**Project Purpose**](#project-purpose)
    * [**Wireframe Designs**](#wireframe-designs)
    * [**User Stories**](#user-stories)
-   * [**Business and Developer Goals**](#business-and-developer-goals)
+   * [**Business Goals**](#business-goals)
+   * [**Developer Goals**](#developer-goals)
    * [**Design Choices**](#design-choices)   
        * [*General Design*](#general-design)
        * [*Colours and Fonts*](#colours-and-fonts)
 2. [**Features**](#features)
    * [**Existing Features**](#existing-features)
+       * [*Sorting*](#sorting)
+       * [*Database*](#database)
+       * [*Backend*](#backend)
+       * [*Frontend*](#frontend)
    * [**Future Features**](#future-features)
        * [*Near Future*](#near-future)
        * [*Far Future*](#far-future)
@@ -106,19 +111,21 @@ Navigation and selection are consistent throuought the app.
 
 ##### Colours and Fonts
 
-The font 'Oswald' was used in busy areas where needed and the branding, as it is heavy enough 
+**Font 1** - The font 'Oswald' was used in busy areas where needed and the branding, as it is heavy enough 
 to draw attention to its self even if there is a lot of other text on the screen, such as a synopsis.
 
-For sub text, such as reviews and descriptions I used the font 'Quicksand', this font is easy to read and
+**Font 2** - For sub text, such as reviews and descriptions I used the font 'Quicksand', this font is easy to read and
 looks 'tidy' helping the app look professional.
 
-For the main site colours I used Teal and White, I went two tone as I wanted the color focus to be on the
+**Colours** - For the main site colours I used Teal and White, I went two tone as I wanted the color focus to be on the
 book covers and help the star ratings stand out.  The majority of the site is shadowed cards with Teal
 for the header and most buttons.  The only exceptions to this are the edit button (yellow) and the delete
 buttons (red), these stand out warning colours should give the user an idea they might want to think
 before clicking.
 
 ## Features
+
+### Existing Features
 
 Using this app you will be able to  :-
 - Create
@@ -138,15 +145,41 @@ Using this app you will be able to  :-
     - A book from the database
     - A review from a book
 
-### Existing Features
+#### Sorting
+* Sort feature allows book sorting ascending and descending by rating, author or title
 
-Books average score only updates when a new review for that book is added
+#### Database
+* A book will be given an average score using its reviews
+* A books average score only updates when a new review for that book is added
+* Add book button allows a user to create a new book entry into the database
+* Delete book button allows a user to delete a book and its reviews from the database
+* Write review button allows a review and star rating to be added to a book in the database
+* Edit review button allows a user to edit the contents and rating of a review
+* Delete review button allows a user to remove a review from a book
+* Book cards are automatically created via information from the database
+
+#### Backend
+* The review score when adding a review is check and capped between 0 and 10, if a user edits the form to give the book a score of 100 it will be reduced to 10, or -55 will be turned to 0, avoiding review score manipulation.
+* The reviews button also displays how many reviews there are for a book example "15 Reviews"
+* Book titles and author names are turned lower case for futureproofing the app to avoid duplicate books and allow esier searches
+
+#### Frontend
+* The website header title will always take you to the home page and keep your sort settings
+* The nav buttons at the top of the page will collapse into an icon on smaller screens
+* The book cards are 1 column wide on mobile, 2 columns on medium res tablets and 3 columns on high res desktops
+* Books will have a link to buy, which will take you to a specified external web page
+* Book cards have "Title", "Author", "Rating" as well as a cover to give users quick relevent information
+* Book cards have buttons that show number of reviews, an option to write a review or buy for quick access
+* Clicking a book cover will reveal its synopsis and an extra button to edit the book
+* Sort feature is a collapsable menu which takes up little space when not used
+
 
 ### Future Features
  
 ##### Near Future
 
 - Add sort by genre feature
+- Add book and author search feature
 
 ##### Far Future
 
@@ -226,6 +259,9 @@ then from your local deployment
 - This project was created by KelvinHere
  
 ### Media
+
+- Book covers - From various authors
+- Star images - KelvinHere
 
 ### Acknowledgements
 
