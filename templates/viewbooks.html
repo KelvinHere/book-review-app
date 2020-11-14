@@ -97,8 +97,13 @@
           <div class="row valign-wrapper">
             <div class="col s6">
               <p class="center-align">
-                <a href="{{url_for('view_reviews', book_id=book._id)}}"
-                  class="waves-effect waves-light btn">{{book.reviews|length}} Reviews</a>
+                {% if book.reviews|length == 1 %}
+                  <a href="{{url_for('view_reviews', book_id=book._id)}}"
+                    class="waves-effect waves-light btn">{{book.reviews|length}} Review</a>
+                {% else %}
+                  <a href="{{url_for('view_reviews', book_id=book._id)}}"
+                    class="waves-effect waves-light btn">{{book.reviews|length}} Reviews</a>                
+                {% endif %}
               </p>
             </div>
             <div class="col s6">
@@ -138,8 +143,13 @@
           <p>{{book.summary}}</p>
           <hr />
           <p class="center-align">
-            <a href="{{url_for('view_reviews', book_id=book._id)}}"
-              class="waves-effect waves-light btn">{{book.reviews|length}} Reviews</a>
+                {% if book.reviews|length == 1 %}
+                  <a href="{{url_for('view_reviews', book_id=book._id)}}"
+                    class="waves-effect waves-light btn">{{book.reviews|length}} Review</a>
+                {% else %}
+                  <a href="{{url_for('view_reviews', book_id=book._id)}}"
+                    class="waves-effect waves-light btn">{{book.reviews|length}} Reviews</a>                
+                {% endif %}
           </p>
           <p class="center-align">
             <a href="{{url_for('add_review', book_id=book._id)}}" class="waves-effect waves-light btn">Write Review</a>
