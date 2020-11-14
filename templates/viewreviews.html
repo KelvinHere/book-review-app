@@ -3,7 +3,7 @@
 <div class="center-align section container">
     <h3>{{bookTitle.title()}} reviews</h3>
     <h4>Average Rating - <img src="{{url_for('static', filename='images/stars/star-')}}{{bookRating}}.png"
-      alt="stars rating image" class="main-review-rating "></h4>
+      alt="stars rating image" class="main-review-rating "> </h4><p>from {{review_num}} reviews</p>
 </div>
 <div class="row section container">
     {% for review in reviews %}

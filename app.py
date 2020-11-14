@@ -87,10 +87,12 @@ def view_reviews(book_id):
                                          {'title': (),
                                           'rating': (),
                                           'reviews': (),
+                                          'review_num': (),
                                           '_id': 0})
     bookTitle = reviewInfo['title']
     bookRating = reviewInfo['rating']
     reviews = reviewInfo['reviews']
+    review_num = reviewInfo['review_num']
     return render_template('viewreviews.html', review_num=review_num, reviews=reviews, bookTitle=bookTitle, bookRating=bookRating, book_id=book_id)
 
 

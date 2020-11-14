@@ -2,7 +2,7 @@
 # These test all views and functions of app.py
 # To run these tests :-
 #       Start mongod using "mongod --dbpath testdb"
-#       Run tests with "python 3 -m unittest testbookapp.py -v"
+#       Run tests with "python3 -m unittest testbookapp.py -v"
 
 import unittest
 import app as appModule
@@ -37,6 +37,7 @@ class MongoDbTests(unittest.TestCase):
                                                                author= 'author test',
                                                                rating= '5',
                                                                reviews= [],
+                                                               review_num= 0,
                                                                link= 'www.testlink.com',
                                                                buy_link= 'www.testbuylink.com',
                                                                genre= 'test genre',
@@ -57,6 +58,7 @@ class MongoDbTests(unittest.TestCase):
                                                                author='author test altered',
                                                                rating='10',
                                                                reviews=[],
+                                                               review_num= 0,
                                                                link='www.testlinkaltered.com',
                                                                buy_link='www.testbuylinkaltered.com',
                                                                genre='test genre altered',
@@ -190,6 +192,26 @@ class AppRouteTests(unittest.TestCase):
         self.assertTrue(b'Write a review for' in response.data)
         self.assertTrue(b'My Test Title' in response.data)
 
+    def test_review_counter(self):
+        # Test that when a review is added or removed the field review_num is recalculated
+
+        # Add a review
+        bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
+        self.app.post(f'insert_review', follow_redirects=True, data=dict(book_id=bookId,
+                                                                         name="reviewer test name",
+                                                                         rating="10",
+                                                                         review="sample test review content"))
+        response = self.app.get(f"/view_reviews/{bookId}")
+        self.assertTrue(b'from 1 reviews' in response.data)
+
+        # Remove a review
+        reviewId = list(mongo.db.books.find({'_id': ObjectId(bookId)}))[0]['reviews'][0]['_id']
+        self.app.get(f'/delete_review/{bookId}/{reviewId}')
+        response = self.app.get(f'/view_reviews/{bookId}')
+        self.assertTrue(b'from 0 reviews' in response.data)
+
+
+
     def test_edit_book(self):
         # Test editbook.html reads and presents correct data from database
         bookId = get_id_from_cursor(add_book_return_cursor())
@@ -243,6 +265,7 @@ def add_book_return_cursor():
                                'buy_link': 'www.testbuylink.com',
                                'genre': 'test genre',
                                'summary': 'test summary',
+                               'review_num': 0,
                                'reviews': []})
     return mongo.db.books.find({'title': 'my test title'})[0]
 
