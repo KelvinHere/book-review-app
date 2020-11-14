@@ -24,8 +24,10 @@ def view_books():
 def sort_books():
     sortField = request.form.get('sortField')
     sortDirection = int(request.form.get('sortDirection'))
-    if sortField == 'rating':
-        bookOrder = mongo.db.books.find().sort([(sortField, sortDirection),('review_number', 1)])
+    if sortField == 'rating' and sortDirection == 1:
+        bookOrder = mongo.db.books.find().sort([(sortField, sortDirection),('review_num', 1)])
+    elif sortField == 'rating' and sortDirection == -1:
+        bookOrder = mongo.db.books.find().sort([(sortField, sortDirection),('review_num', -1)])
     else:
         bookOrder = mongo.db.books.find().sort(sortField, sortDirection)
     return render_template('viewbooks.html', books=bookOrder, sortParameters={'sortField': sortField, 'sortDirection': sortDirection})
