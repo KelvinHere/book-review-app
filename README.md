@@ -174,6 +174,21 @@ Using this app you will be able to  :-
 * Sort feature is a collapsable menu which takes up little space when not used
 
 
+### Changes during development
+
+During development a new usefull feature was added:-
+After sorting books by rating also sub-sort them by number of reviews.
+
+This would allow books that have a high rating and lots of reviews rank higher than books with just one high rating review.  But this feature
+needed another field to be added to all the documents.  I wrote a small script that would update all documents of my book collection with the
+new field **review_num**, after this all books in the books collection would be itterated over and have the length of the reviews array assigned
+to the review_num field.
+
+An extra method was created to increment or decrement the review_num each time a review is added or removed.
+
+This was done after using mongodump.exe to create a backup of the database.
+
+
 ### Future Features
  
 ##### Near Future

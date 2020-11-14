@@ -24,7 +24,10 @@ def view_books():
 def sort_books():
     sortField = request.form.get('sortField')
     sortDirection = int(request.form.get('sortDirection'))
-    bookOrder = mongo.db.books.find().sort(sortField, sortDirection)
+    if sortField == 'rating':
+        bookOrder = mongo.db.books.find().sort([(sortField, sortDirection),('review_number', 1)])
+    else:
+        bookOrder = mongo.db.books.find().sort(sortField, sortDirection)
     return render_template('viewbooks.html', books=bookOrder, sortParameters={'sortField': sortField, 'sortDirection': sortDirection})
 
 
@@ -86,7 +89,7 @@ def view_reviews(book_id):
     bookTitle = reviewInfo['title']
     bookRating = reviewInfo['rating']
     reviews = reviewInfo['reviews']
-    return render_template('viewreviews.html', reviews=reviews, bookTitle=bookTitle, bookRating=bookRating, book_id=book_id)
+    return render_template('viewreviews.html', review_num=review_num, reviews=reviews, bookTitle=bookTitle, bookRating=bookRating, book_id=book_id)
 
 
 @app.route('/add_review/<book_id>')
@@ -161,7 +164,8 @@ def update_average_score(book_id):
     else:
         newRating = 0
     mongo.db.books.update_one({'_id': ObjectId(book_id)},
-                              {'$set': {'rating': newRating}})
+                              {'$set': {'rating': newRating,
+                                        'review_num': totalReviews}})
 
 
 if __name__ == "__main__":

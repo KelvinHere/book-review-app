@@ -2,6 +2,7 @@
 {% block content %}
 <div class="center-align section container">
     <h3>{{bookTitle.title()}} reviews</h3>
+    <p>{{review_num}}</p>
     <h4>Average Rating - <img src="{{url_for('static', filename='images/stars/star-')}}{{bookRating}}.png"
       alt="stars rating image" class="main-review-rating "></h4>
 </div>
