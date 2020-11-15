@@ -202,13 +202,13 @@ class AppRouteTests(unittest.TestCase):
                                                                          rating="10",
                                                                          review="sample test review content"))
         response = self.app.get(f"/view_reviews/{bookId}")
-        self.assertTrue(b'from 1 reviews' in response.data)
+        self.assertTrue(b'From 1 review' in response.data)
 
         # Remove a review
         reviewId = list(mongo.db.books.find({'_id': ObjectId(bookId)}))[0]['reviews'][0]['_id']
         self.app.get(f'/delete_review/{bookId}/{reviewId}')
         response = self.app.get(f'/view_reviews/{bookId}')
-        self.assertTrue(b'from 0 reviews' in response.data)
+        self.assertTrue(b'From 0 reviews' in response.data)
 
 
 

@@ -4,4 +4,4 @@ how can someone run unit tests locally without installing mongodb?  Should I jus
 
 add favicon
 
-sub sort rating by amount of ratings so books with more ratings and higher average appear before books with just one 5 star rating
+make nav bar dropdown text more bold
