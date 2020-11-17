@@ -1,5 +1,14 @@
 # Testing the Book Review app
 
+1. [**Automated Tests**](#automated-tests)
+   * [Code Validation](#code-validation)
+   * [Unit Testing](#unit-testing)
+   * [Writing your own unittests](#writing-your-own-unittests)
+2. [**Manual Testing**](#manual-testing)
+   * [Database Testing](#database-testing)
+   * [Navigation testing](#navigation-testing)
+3. [**User Story Testing**](#user-story-testing)
+
 ## Automated Tests
 
 ### Code Validation
@@ -11,30 +20,33 @@ This projects code has been validated through various services
     - [addbook.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fadd_book)
     - [editbook.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fedit_book%2F5f96bdb414d4ef7e4c5b27e6)
     - [addreview.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fadd_review%2F5f96bdb414d4ef7e4c5b27e6)
-]   - [editreview.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fedit_review%2F5f96bdb414d4ef7e4c5b27e6%2F5f9d6c01ff0a9a6af0953ebb)
+    - [editreview.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fedit_review%2F5f96bdb414d4ef7e4c5b27e6%2F5f9d6c01ff0a9a6af0953ebb)
     - [viewreviews.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fview_reviews%2F5f96bdb414d4ef7e4c5b27e6)
 - W3C CSS
+    - [style.css](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fstatic%2Fcss%2Fstyle.css&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+    * ![CSS3](https://www.w3.org/Icons/valid-css)
+    * ![SVG](https://www.w3.org/Icons/valid-css-blue)
+
 - W3C Spellchecker
-
-
+    - All pages checked through W3C Spellchecker
 
 ### Unit Testing
 
 Unit testing was used on this project to quickly and efficently test changes to code.  These tests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py)
 check that :-
 - All CRUD operations can be carried out on a database and that that database information makes it to the webpages it needs to get to. 
-- All routes take the user to the correct webpages and contain the required information from the database
-- All functions in app.py return the correct values
+- All routes take the user to the correct webpages and contain the required information from the database.
+- All functions in app.py return the correct values.
 
 On running the unittests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py) the database is switched to an empty local database, some
-setup is required if running locally, as explained below in [Writing your own unittests on a local deployment](#writing-your-own-unittests-on-a-local-deployment).  This allows
+setup is required if running locally, as explained below in [Writing your own unittests](#writing-your-own-unittests).  This allows
 the app to be tested end to end and stops the risk of the tests corrupting the live database.
 
 An example of this end to end testing would be, testing the view that adds a book to the database.  The unittest posts immitation form data to the insert_book view, the viewbooks view 
 is then called to render the viewbooks.html page where this information should now be displayed and the test asserts that all the book information that should be pulled from the 
 database is displayed on the output page.
 
-### Writing your own unittests on a local deployment
+### Writing your own unittests
 
 1. Follow the local deployment instructions in the ['Local Deployment' section of readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md#deployment)
 
@@ -58,50 +70,65 @@ database is displayed on the output page.
 
 ## Manual Testing
 
-Manual testing of all CRUD operations have been tested
-    - 
+### Database Testing
+Each feature of the apps CRUD operations have been tested manually
+- A book can be added
+- A book can be deleted
+- A book can be edited
+- Books display on front page
+* A review can be added
+* A review can be deleted
+* A review can be edited
+* Reviews can be viewed by book
+- Books can be sorted by Title A-Z or Z-A
+- Books can be sorted by Author A-Z or Z-A
+- Books can be sorted by rating ascending or descending
+
+### Navigation testing
+- Every route and button has been checked it takes you to the right destination.
 
 ## User Story Testing
+Answered user stories from the [user Stories](https://github.com/KelvinHere/book-review-app/blob/master/README.md#user-stories) section of [readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md)
 
 As a user I want
-1. To find out more about a book quickly, because I don't have much time.
-A user can instantly see an average review score of a book and how many reviews have been written about it from
+1. **To find out more about a book quickly, because I don't have much time.**
+- A user can instantly see an average review score of a book and how many reviews have been written about it from
 its un-reavealed card.  If they want to know more or see a description they can click the cover to reveal that
 information.
 
-1. To read reviews on a book I think I may like, because I want opinions before I buy it.
-A user can click read reviews from a books card to see each review and its rating.
+2. **To read reviews on a book I think I may like, because I want opinions before I buy it.**
+- A user can click read reviews from a books card to see each review and its rating.
 
-1. To buy a book I just read reviews on, because it confirmed I will probably like it.
-A user can click an affiliate link to buy the book from its card revealed or unrevealed.
+3. **To buy a book I just read reviews on, because it confirmed I will probably like it.**
+- A user can click an affiliate link to buy the book from its card revealed or unrevealed.
 
-1. To find the highest rated book, because I want to see what 'is in'.
-A user can use the sort bar at the top of the home page to sort by rating high to low.
+4. **To find the highest rated book, because I want to see what 'is in'.**
+- A user can use the sort bar at the top of the home page to sort by rating high to low.
 
-1. To buy a book with the worst overall rating, because I enjoy b-movies more than I should.
-A user can use the sort bar at the top of the home page to sort by rating low to high.
+5. **To buy a book with the worst overall rating, because I enjoy b-movies more than I should.**
+- A user can use the sort bar at the top of the home page to sort by rating low to high.
 
-1. To view all of an authors books, because I will probably enjoy another book of the same author.
-A user can sort books by author in ascending or descending order to group books by author.
+6. **To view all of an authors books, because I will probably enjoy another book of the same author.**
+- A user can sort books by author in ascending or descending order to group books by author.
 
-1. To view titles in alphabetical order, becuase I kind of know what a book is called and this could help.
-A user can sort books by title in ascending or descending order.
+7. **To view titles in alphabetical order, becuase I kind of know what a book is called and this could help.**
+- A user can sort books by title in ascending or descending order.
 
-1. To write a review on a book I have just read, because I want people to know how great/bad it was.
-A user can click on a write review button on a books card (revealed or unrevealed) to write a review.
+8. **To write a review on a book I have just read, because I want people to know how great/bad it was.**
+- A user can click on a write review button on a books card (revealed or unrevealed) to write a review.
 
-1. To edit a review I just wrote, because I changed my mind on how I feel about it.
-A user can find their review and click the edit button to update their review.
+9. **To edit a review I just wrote, because I changed my mind on how I feel about it.**
+- A user can find their review and click the edit button to update their review.
 
-1. To delete a review, because I don't want people knowing I have read this book.
-A user can find their review and click the delete button to remove their review.
+10. **To delete a review, because I don't want people knowing I have read this book.**
+- A user can find their review and click the delete button to remove their review.
 
-1. To be able to create a book entry because it does not already exist and I want to review it.
-A user can click the add book button on the top menu bar / dropdown menu or bottom of the view books
+11. **To be able to create a book entry because it does not already exist and I want to review it.**
+- A user can click the add book button on the top menu bar / dropdown menu or bottom of the view books
 page.
 
-1. I want to update some incorrect information in a books details.
-A user can click the edit book button of a books card  to update any information about that book.
+12. **I want to update some incorrect information in a books details.**
+- A user can click the edit book button of a books card  to update any information about that book.
 
-1. To delete a book I created.
-If a user wants to delete a book they created, they can do it from the edit book page with the delete book button.
+13. **To delete a book I created.**
+- If a user wants to delete a book they created, they can do it from the edit book page with the delete book button.

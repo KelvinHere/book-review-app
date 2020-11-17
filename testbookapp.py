@@ -167,22 +167,20 @@ class AppRouteTests(unittest.TestCase):
     def test_sort_books(self):
         # Check after sort is submitted the order is passed to new page
         # Rating Descending
-        response = self.app.post(f'sort_books', follow_redirects=True, data=dict(sortField='rating',
-                                                                         sortDirection='-1')) 
-        self.assertTrue(b'<input value="rating" name="sortField" id="rating" type="radio" checked />' in response.data)
-        self.assertTrue(b'<input value="1" name="sortDirection" id="-1"' in response.data)
+        response = self.app.post(f'sort_books', follow_redirects=True, data=dict(sortField='rating', sortDirection='-1')) 
+        self.assertTrue(b'<input value="rating" name="sortField" type="radio" checked />' in response.data)
+        self.assertTrue(b'<input value="-1" name="sortDirection" type="radio" checked />' in response.data)
 
         # Author Ascending
         response = self.app.post(f'sort_books', follow_redirects=True, data=dict(sortField='author',
                                                                          sortDirection='1'))
-        self.assertTrue(b'<input value="author" name="sortField" id="author" type="radio" checked />' in response.data)
-        self.assertTrue(b'<input value="1" name="sortDirection" id="1"' in response.data)
+        self.assertTrue(b'<input value="author" name="sortField" type="radio" checked />' in response.data)
+        self.assertTrue(b'<input value="1" name="sortDirection" type="radio" checked />' in response.data)
 
         # Title Descending
-        response = self.app.post(f'sort_books', follow_redirects=True, data=dict(sortField='title',
-                                                                         sortDirection='-1'))
-        self.assertTrue(b'<input value="title" name="sortField" id="title" type="radio" checked />' in response.data)
-        self.assertTrue(b'<input value="1" name="sortDirection" id="-1"' in response.data)
+        response = self.app.post(f'sort_books', follow_redirects=True, data=dict(sortField='title', sortDirection='-1'))
+        self.assertTrue(b'<input value="title" name="sortField" type="radio" checked />' in response.data)
+        self.assertTrue(b'<input value="-1" name="sortDirection" type="radio" checked />' in response.data)
 
     def test_add_review_page(self):
         # Test add review fetches and presents book data from database _id

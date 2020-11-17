@@ -53,13 +53,13 @@ they have read and find new books they might enjoy from a description and review
 #### Wireframe Designs
 
 - The home page will responsivley display book cards
-![BookView](https://github.com/KelvinHere/book-review-app/blob/master/design/wireframes/wireframe-home-s.jpg "Book view wireframe image")
+![BookView](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/wireframes/wireframe-home-s.jpg "Book view wireframe image")
 - On clicking the book covers you will be shown a reveal with extra information
-![RevealView](https://github.com/KelvinHere/book-review-app/blob/master/design/wireframes/wireframe-reveal-s.jpg "Book view revealed wireframe image")
-- Viewing reviews
-![ReviewsView](https://github.com/KelvinHere/book-review-app/blob/master/design/wireframes/wireframe-reviews-s.jpg "View reviews wireframe image")
+![RevealView](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/wireframes/wireframe-reveal-s.jpg "Book view revealed wireframe image")
+- Viewing reviews page
+![ReviewsView](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/wireframes/wireframe-reviews-s.jpg "View reviews wireframe image")
 - All input forms will take the style below, this will cover adding or editing a book or review.
-![FormView](https://github.com/KelvinHere/book-review-app/blob/master/design/wireframes/wireframe-add-review-s.jpg "Form wireframe image")
+![FormView](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/wireframes/wireframe-add-review-s.jpg "Form wireframe image")
 
 #### User Stories
 
