@@ -7,7 +7,7 @@
   <form class="col s12" action="{{url_for('update_review', book_id=book_id, review_id=review_id)}}" method="POST">
     <div class="input-field col s12">
       <i class="material-icons prefix">star_rate</i>
-        <select id="new_rating" name="new_rating" size="5" required>
+        <select id="new_rating" name="new_rating" size="7" required>
           {% for i in range(11) %}
             {% if i % 2 == 0 %}
               {% if i == rating %}

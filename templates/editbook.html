@@ -28,8 +28,7 @@
       </div>
     </div>
     <div class="input-field col s12">
-      <select id="genre" name="genre">
-        <option value="{{book.genre}}" disabled selected required>{{book.genre}}</option>
+      <select id="genre" name="genre" size="5" required>
         {% for genre in genres %}
           {% if genre.genre_name == book.genre %}
           <option value="{{genre.genre_name}}" selected>{{genre.genre_name}}</option>
