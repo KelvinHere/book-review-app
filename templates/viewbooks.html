@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<section class="row search-container margin-bottom-0">
+<div class="row search-container margin-bottom-0">
   <ul class="collapsible col s12 m6 l4 offset-m3 offset-l4">
     <li>
       <div class="collapsible-header"><i class="material-icons">sort</i>Sort Books</div>
@@ -11,9 +11,9 @@
               <p>
                 <label>
                   {% if sortParameters.sortField == 'title' %}
-                  <input value="title" name="sortField" id="{{sortParameters.sortField}}" type="radio" checked />
+                  <input value="title" name="sortField" type="radio" checked />
                   {% else %}
-                  <input value="title" name="sortField" id="{{sortParameters.sortField}}" type="radio" />
+                  <input value="title" name="sortField" type="radio" />
                   {% endif %}
                   <span>Title</span>
                 </label>
@@ -21,9 +21,9 @@
               <p>
                 <label>
                   {% if sortParameters.sortField == 'author' %}
-                  <input value="author" name="sortField" id="{{sortParameters.sortField}}" type="radio" checked />
+                  <input value="author" name="sortField" type="radio" checked />
                   {% else %}
-                  <input value="author" name="sortField" id="{{sortParameters.sortField}}" type="radio" />
+                  <input value="author" name="sortField" type="radio" />
                   {% endif %}
                   <span>Author</span>
                 </label>
@@ -31,9 +31,9 @@
               <p>
                 <label>
                   {% if sortParameters.sortField == 'rating' %}
-                  <input value="rating" name="sortField" id="{{sortParameters.sortField}}" type="radio" checked />
+                  <input value="rating" name="sortField" type="radio" checked />
                   {% else %}
-                  <input value="rating" name="sortField" id="{{sortParameters.sortField}}" type="radio" />
+                  <input value="rating" name="sortField" type="radio" />
                   {% endif %}
                   <span>Rating</span>
                 </label>
@@ -45,9 +45,9 @@
                 <p>
                     <label>
                     {% if sortParameters.sortDirection == 1 %}
-                    <input value="1" name="sortDirection" id="{{sortParameters.sortDirection}}" type="radio" checked />
+                    <input value="1" name="sortDirection" type="radio" checked />
                     {% else %}
-                    <input value="1" name="sortDirection" id="{{sortParameters.sortDirection}}" type="radio" />
+                    <input value="1" name="sortDirection" type="radio" />
                     {% endif %}
                     <span>Ascending</span>
                     </label>
@@ -55,9 +55,9 @@
                 <p>
                     <label>
                     {% if sortParameters.sortDirection == -1 %}
-                    <input value="-1" name="sortDirection" id="{{sortParameters.sortDirection}}" type="radio" checked />
+                    <input value="-1" name="sortDirection" type="radio" checked />
                     {% else %}
-                    <input value="-1" name="sortDirection" id="{{sortParameters.sortDirection}}" type="radio" />
+                    <input value="-1" name="sortDirection" type="radio" />
                     {% endif %}
                     <span>Descending</span>
                     </label>
@@ -76,7 +76,7 @@
       </div>
     </li>
   </ul>
-</section>
+</div>
 <p class="center-align margin-top-0 margin-bottom-0">Click a cover for more info</p>
 <section class="row book-card-container">
   {% for book in books %}
@@ -132,7 +132,7 @@
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="material-icons right close-reveal">close</i></span>
           <div class="book-info-container">
-            <h4 class="center-align">{{book.title.title()}}</h4>
+            <h4 class="center-align bold-title">{{book.title.title()}}</h4>
             <p class="center-align">by {{book.author.title()}}</p>
             <p class="center-align">{{book.genre.title()}}
           </div>
