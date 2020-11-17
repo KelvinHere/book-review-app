@@ -7,6 +7,12 @@
 This projects code has been validated through various services
 
 - W3C Markup
+    - [viewbooks.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fview_books)
+    - [addbook.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fadd_book)
+    - [editbook.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fedit_book%2F5f96bdb414d4ef7e4c5b27e6)
+    - [addreview.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fadd_review%2F5f96bdb414d4ef7e4c5b27e6)
+]   - [editreview.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fedit_review%2F5f96bdb414d4ef7e4c5b27e6%2F5f9d6c01ff0a9a6af0953ebb)
+    - [viewreviews.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fview_reviews%2F5f96bdb414d4ef7e4c5b27e6)
 - W3C CSS
 - W3C Spellchecker
 

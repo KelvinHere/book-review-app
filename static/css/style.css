@@ -9,30 +9,40 @@ h1, h2, h3, h4, h5, h6, .brand-logo {
  text-transform: uppercase;
 }
 
-.close-reveal, .open-reveal {
-    position: absolute;
-    right: 15px;
-}
-
 .bold-title {
   font-family: 'Oswald', sans-serif;
   font-weight: 600;
 }
 
+/* ----------------------------------------Buttons */
 .update-buttons-resize {
     width: 100%;
 }
 
-.margin-top {
-    margin-top: 20px;
+.card-content .btn {
+    width: 100%;
 }
 
+.card-reveal .btn {
+    width: 50%;
+}
+
+/* ----------------------------------------Star ratings */
 .star-rating-container > img {
     width: 50%;
 }
 
+.review-rating {
+    width: 100px;
+}
+
 .main-review-rating {
     width: 150px;
+}
+
+/* ----------------------------------------Margins */
+.margin-top {
+    margin-top: 20px;
 }
 
 .margin-bottom-0 {
@@ -43,12 +53,14 @@ h1, h2, h3, h4, h5, h6, .brand-logo {
     margin-top: 0px !important;
 }
 
-.review-rating {
-    width: 100px;
-}
-
 .row {
     margin-bottom: 10px;
+}
+
+/* ----------------------------------------Cards */
+.close-reveal, .open-reveal {
+    position: absolute;
+    right: 15px;
 }
 
 .hr-card {
@@ -61,18 +73,12 @@ h1, h2, h3, h4, h5, h6, .brand-logo {
     object-fit: scale-down;
 }
 
-.card-content .btn {
-    width: 100%;
-}
-
-.card-reveal .btn {
-    width: 50%;
-}
 
 @media only screen and (min-width: 768px) {
   .update-buttons-resize {
     width: 75%;
   }
+}
 
 @media only screen and (min-width: 993px) {
   .card-image-element {
