@@ -83,10 +83,11 @@ class MongoDbTests(unittest.TestCase):
     def test_insert_and_view_reviews(self):
         # Test insert_review can insert review and view_reviews can fetch data
         bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
-        self.app.post(f'insert_review', follow_redirects=True, data=dict(book_id=bookId,
-                                                                         name="reviewer test name",
-                                                                         rating="10",
-                                                                         review="sample test review content"))
+        self.app.post(f'insert_review', follow_redirects=True,
+                      data=dict(book_id=bookId,
+                                name="reviewer test name",
+                                rating="10",
+                                review="sample test review content"))
         response = self.app.get(f"/view_reviews/{bookId}")
         # Assert all relevent book information is present on view books page
         self.assertTrue(b'My Test Title reviews' in response.data)  # Page title
@@ -102,15 +103,15 @@ class MongoDbTests(unittest.TestCase):
         book = list(mongo.db.books.find({'_id': ObjectId(bookId)}))
         reviewId = book[0]['reviews'][0]['_id']
 
-        self.app.post(f'update_review/{bookId}/{reviewId}', follow_redirects=True, data=dict(new_rating='5',
-                                                                                             new_review="updated review content"))
+        self.app.post(f'update_review/{bookId}/{reviewId}', follow_redirects=True,
+                      data=dict(new_rating='5',
+                                new_review="updated review content"))
         response = self.app.get(f'/view_reviews/{bookId}')
         # Assert all relevent book information is present on view books page
         self.assertTrue(b'My Test Title reviews' in response.data)  # Page title
         self.assertTrue(b'Reviewer Test Name' in response.data)  # Reviewer Name
         self.assertTrue(b'star-5.png' in response.data)  # Image name for star rating
         self.assertTrue(b'updated review content' in response.data)  # Review
-
 
     def test_delete_review(self):
         # Test a review can be deleted given a bookId and reviewId
@@ -127,10 +128,9 @@ class MongoDbTests(unittest.TestCase):
         self.assertFalse(b'star-5.png' in response.data)  # Image name for star rating
         self.assertFalse(b'updated review content' in response.data)  # Review
 
-
     def test_update_average_score(self):
         # Test update average score updates books average rating
-        bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid book and get _id
+        bookId = get_id_from_cursor(add_book_return_cursor())  # Create a valid  get _id
         add_test_review(bookId, 10)
         add_test_review(bookId, 10)
         add_test_review(bookId, 0)

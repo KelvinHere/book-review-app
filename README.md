@@ -35,6 +35,9 @@ it.
 4. * [**Testing**](#testing)
 5. * [**Technologies Used**](#technologies-used)
 6. * [**Deployment**](#deployment)
+        * [*Version Control*](#version-control)
+        * [*Local Deployment*](#local-deployment)
+        * [*Heroku Deployment*](#heroku-deployment)
 7. * [**Credits**](#credits)
        * [**Content**](#content)
        * [**Media**](#media)
@@ -146,32 +149,33 @@ Using this app you will be able to  :-
     - A review from a book
 
 #### Sorting
-* Sort feature allows book sorting ascending and descending by rating, author or title
+* Sort feature allows book sorting ascending and descending by rating, author or title.
 
 #### Database
-* A book will be given an average score using its reviews
-* A books average score only updates when a new review for that book is added
-* Add book button allows a user to create a new book entry into the database
-* Delete book button allows a user to delete a book and its reviews from the database
-* Write review button allows a review and star rating to be added to a book in the database
-* Edit review button allows a user to edit the contents and rating of a review
-* Delete review button allows a user to remove a review from a book
-* Book cards are automatically created via information from the database
+* A book will be given an average score using its reviews.
+* A books average score only updates when a new review for that book is added.
+* Add book button allows a user to create a new book entry into the database.
+* Delete book button allows a user to delete a book and its reviews from the database.
+* Write review button allows a review and star rating to be added to a book in the database.
+* Edit review button allows a user to edit the contents and rating of a review.
+* Delete review button allows a user to remove a review from a book.
+* Book cards are automatically created via information from the database.
 
 #### Backend
 * The review score when adding a review is check and capped between 0 and 10, if a user edits the form to give the book a score of 100 it will be reduced to 10, or -55 will be turned to 0, avoiding review score manipulation.
-* The reviews button also displays how many reviews there are for a book example "15 Reviews"
-* Book titles and author names are turned lower case for futureproofing the app to avoid duplicate books and allow esier searches
+* The reviews button also displays how many reviews there are for a book example "15 Reviews".
+* Book titles and author names are turned lower case for futureproofing the app to avoid duplicate books and allow esier searches.
 
 #### Frontend
-* The website header title will always take you to the home page and keep your sort settings
-* The nav buttons at the top of the page will collapse into an icon on smaller screens
-* The book cards are 1 column wide on mobile, 2 columns on medium res tablets and 3 columns on high res desktops
-* Books will have a link to buy, which will take you to a specified external web page
-* Book cards have "Title", "Author", "Rating" as well as a cover to give users quick relevent information
-* Book cards have buttons that show number of reviews, an option to write a review or buy for quick access
-* Clicking a book cover will reveal its synopsis and an extra button to edit the book
-* Sort feature is a collapsable menu which takes up little space when not used
+* The website header title will always take you to the home page and keep your sort settings.
+* The nav buttons at the top of the page will collapse into an icon on smaller screens.
+* The book cards are 1 column wide on mobile, 2 columns on medium res tablets and 3 columns on high res desktops.
+* Books will have a link to buy, which will take you to a specified external web page.
+* Book cards have "Title", "Author", "Rating" as well as a cover to give users quick relevent information.
+* Book cards have buttons that show number of reviews, an option to write a review or buy for quick access.
+* Clicking a book cover will reveal its synopsis and an extra button to edit the book.
+* Sort feature is a collapsable menu which takes up little space when not used.
+* If books are sorted by rating and have the same star rating they are sub sorted by how many review they have.
 
 
 ### Changes during development
@@ -204,7 +208,7 @@ This was done after using mongodump.exe to create a backup of the database.
 
 ## Testing
  
-TESTING LINK HERE
+[Testing Documentation](https://github.com/KelvinHere/book-review-app/blob/master/testing.md) - Documentation for testing
 
 ## Technologies Used
 
@@ -228,8 +232,7 @@ TESTING LINK HERE
 This project was created in [GitPod](https://gitpod.io/) with the [Code Institute template](https://github.com/Code-Institute-Org/gitpod-full-template) and version controlled through 'Git', the project was committed and pushed to [GitHub](https://github.com/).
 The project was then deployed to [Heroku](https://www.heroku.com/).
 
-Project Development :-
-* This project was developed using GitPod.
+### Version Control
 * After files are created or modified they are committed to a GitHub repository using git by :-
     - adding the modified files locally using `git add .` or `git add filename.extension`
     - commiting the modified files with a message of changes using `git commit -m "changes here"`
@@ -237,35 +240,70 @@ Project Development :-
     - updating an out of date local branch with `git fetch origin` and pulling changes with `git pull origin`
 
 ### Local Deployment
- 
-Clone this repository to your local workspace by :-
- 
-1. Opening the [Book Review App](https://github.com/KelvinHere/book-review-app) repository.
+
+* Requirements
+    - An Atlas MongoDB account with a database called `book_app_db` which has the collections `books` and `genres`
+    - An Atlas user profile called `root` with read/write access to the `book_app_db` database
+    - Local computer with an IDE, Python 3.8.6, git and pip.
+
+Clone this repository to your local workspace :-
+
+1. Open the [Book Review App](https://github.com/KelvinHere/book-review-app) repository.
 2. Click the 'Code' button and then copy the 'Clone with HTTPS' URL.
-3. In your local workspace open a terminal.
+3. From your IDE open a terminal.
 4. From inside the directory you want the clone, type `git clone` and paste the URL you copied from GitHub then press enter.  Example below.
  
-`git clone https://github.com/KelvinHere/book-review-app.git`
+- `git clone https://github.com/KelvinHere/book-review-app.git`
  
 5. Cloning will be completed when your terminal is waiting for its next command.
-6. For more information or changes in the cloning procedure at this link [Git Clone](https://github.com/git-guides/git-clone).
+6. More information or changes in the cloning procedure at this link [Git Clone](https://github.com/git-guides/git-clone).
+7. Make sure pip is up to date `pip install --upgrade pip`
+8. Install the app requirements `pip install -r requirements.txt`
+9. Link the app to your Atlas MongoDb account through an enviromental variable
+    - Login to Atlas MongoDb
+    - Click Clusters > Overview > Connect
+    - Click 'connect your application'
+    - Select your driver and version ie 'Python' '3.6 or later'
+    - Copy the given "Connection String"
+    - Create env.py in the root of the book app workspace and add the code below
+        - `import os`
+        - `os.environ.setdefault()`
+    - Paste the Connection String inside this and replace the <> markers with your Atlas details
+    - The contents of env.py should look similar to the code below
+        - `import os`
+        - `os.environ.setdefault("MONGO_URI", "mongodb+srv://root:MYPASSWORD@firstcluster.er9ib.mongodb.net/book_app_db?retryWrites=true&w=majority")`
+10. Run `python3 app.py` to start the app
+11. Open the given link in your IDE and you will be connected to your Atlas book_app_db and can start adding books.
+
 
 ### Heroku Deployment
  
 The deployed version of 'Book Review' is hosted on Heroku and was deployed with the following steps.
 
-Create a Heroku account, create a new
+* Requirements
+    - A locally deployed version of the Book Review App from the instructions above
+    - A Heroku account
+    - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed locally, instructions in [this link](https://devcenter.heroku.com/articles/heroku-cli)
 
-then from your local deployment
-
-`$ heroku login -i` and enter your login details
-
-`$ heroku git:clone -a book-review-kelvinhere`
-`$ cd book-review-kelvinhere`
-
-`$ git add .`
-`$ git commit -am "make it better"`
-`$ git push heroku master`
+1. Create a Heroku account and login
+2. Click New > App
+3. Give the app a name, select a region and create the app
+4. Set up enviromental variables in Heroku
+    - Select your app in Heroku and click settings
+    - Under Config Vars set up the key value pairs as below
+    - IP = 0.0.0.0
+    - PORT = 5000
+    - MONGO_URI = The Atlas MongoDb Connection String as explained in [local deployment](#local-deployment) above
+5. Login to Heroku from your terminal with `heroku login -i` then follow prompts
+6. `pip freeze --local > requirements.txt` to update your requirements.txt in case of new requirements
+7. `git init` if you have not initialised your git repo
+8. `heroku git:remote -a YOUR_APP_NAME` to add remote
+9. `git add .` and `git commit` your changes
+10. `git push heroku master` to deploy to Heroku
+11. From the Heroku website
+12. You many need to click 'More' in the Heroku app and select 'Restart all dynos'
+13. Click 'Open App' 
+14. The App should now be running through Heroku
 
 
 ## Credits

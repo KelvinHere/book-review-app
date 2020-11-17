@@ -1,3 +1,34 @@
+# Testing the Book Review app
+
+## Automated Tests
+
+### Unit Testing
+
+Unit testing was used on this project to quickly and efficently test changes to code.  These tests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py)
+
+
+### Writing your own unittests on a local deployment
+
+1. Follow the local deployment instructions in the ['Local Deployment' section of readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md#deployment)
+
+2. [Install MongoDB Community Edition](https://www.mongodb.com/try/download/community?tck=docs_server) binaries only dont worry about setting it as a service
+
+3. Add the following enviromental varialbes to env.py
+    - `os.environ.setdefault("IP", "0.0.0.0")`
+    - `os.environ.setdefault("PORT", 5000)`
+
+3. Start your locally deployed book review application
+
+4. Start the test database from the terminal in your deployed app directory.  Run `mongod` with the following arguments `--dbpath testdb` for example
+* `C:\MongoDB\Server\4.4\bin\mongod.exe --dbpath testdb`
+* Documentation to help running mongod [link here](https://docs.mongodb.com/manual/reference/program/mongod.exe/`)
+
+5. Add your new tests to testbookapp.py in the deployed app directory
+
+6. Run the unit tests from the terminal in your app directory with the following command `python3 -m unittest testbookapp.py` (use `py` instead of `python3` if you are using windows 10)
+
+7. Optionally add the verbose argument `-v` to the command above to display more information on the tests running
+
 ## User Story Testing
 
 As a user I want

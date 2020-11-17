@@ -8,7 +8,10 @@ if os.path.exists("env.py"):
 # Create flask app and configure database
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = "book_app_db"
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+if not os.environ.get("MONGO_URI") is None:
+    app.config["MONGO_URI"] = os.environ.get("MONGO_URI")  # Production DB
+else:
+    app.config["MONGO_URI"] = "mongodb://localhost:27017/testBookDb"  # Test DB
 mongo = PyMongo(app)
 
 
