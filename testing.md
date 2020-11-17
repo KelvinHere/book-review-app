@@ -37,6 +37,7 @@ check that :-
 - All CRUD operations can be carried out on a database and that that database information makes it to the webpages it needs to get to. 
 - All routes take the user to the correct webpages and contain the required information from the database.
 - All functions in app.py return the correct values.
+- All tests were initally made to fail as to avoid false negatives.
 
 On running the unittests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py) the database is switched to an empty local database, some
 setup is required if running locally, as explained below in [Writing your own unittests](#writing-your-own-unittests).  This allows
@@ -45,6 +46,9 @@ the app to be tested end to end and stops the risk of the tests corrupting the l
 An example of this end to end testing would be, testing the view that adds a book to the database.  The unittest posts immitation form data to the insert_book view, the viewbooks view 
 is then called to render the viewbooks.html page where this information should now be displayed and the test asserts that all the book information that should be pulled from the 
 database is displayed on the output page.
+
+The result of my unit-tests
+- ![unittests](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/testing/unittests.jpg "result of unit tests")
 
 ### Writing your own unittests
 
