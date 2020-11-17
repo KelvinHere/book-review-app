@@ -1,7 +1,6 @@
-how can i get local os.env variables over
-
-how can someone run unit tests locally without installing mongodb?  Should I just say use gitpod?
-
 add favicon
 
 make nav bar dropdown text more bold
+
+Spencer questions-
+    Python formatting, line too long

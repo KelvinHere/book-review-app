@@ -2,6 +2,16 @@
 
 ## Automated Tests
 
+### Code Validation
+
+This projects code has been validated through various services
+
+- W3C Markup
+- W3C CSS
+- W3C Spellchecker
+
+
+
 ### Unit Testing
 
 Unit testing was used on this project to quickly and efficently test changes to code.  These tests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py)
@@ -42,6 +52,8 @@ database is displayed on the output page.
 
 ## Manual Testing
 
+Manual testing of all CRUD operations have been tested
+    - 
 
 ## User Story Testing
 
