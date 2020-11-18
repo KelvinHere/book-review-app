@@ -50,7 +50,7 @@ An example of this end to end testing would be, testing the view that adds a boo
 is then called to render the viewbooks.html page where this information should now be displayed and the test asserts that all the book information that should be pulled from the 
 database is displayed on the output page.
  
-The result of my unit-tests
+The result of my unittests
 - ![unittests](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/testing/unittests.jpg "result of unit tests")
  
 ### Writing your own unittests
@@ -63,11 +63,11 @@ The result of my unit-tests
     - `os.environ.setdefault("IP", "0.0.0.0")`
     - `os.environ.setdefault("PORT", 5000)`
  
-3. Start your locally deployed book review application
+3. From your IDE load the Book Review App
  
 4. Start the test database from the terminal in your deployed app directory.  Run `mongod` with the following arguments `--dbpath testdb` for example
-* `C:\MongoDB\Server\4.4\bin\mongod.exe --dbpath testdb`
-* Documentation to help running mongod [link here](https://docs.mongodb.com/manual/reference/program/mongod.exe/)
+    * `C:\MongoDB\Server\4.4\bin\mongod.exe --dbpath testdb`
+    * Documentation to help running mongod [link here](https://docs.mongodb.com/manual/reference/program/mongod.exe/)
  
 5. Add your new tests to [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py) in the deployed app directory
  
