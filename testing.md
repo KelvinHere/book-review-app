@@ -7,6 +7,9 @@
 2. [**Manual Testing**](#manual-testing)
    * [Database Testing](#database-testing)
    * [Navigation testing](#navigation-testing)
+   * [Incorrect Form Submissions](#incorrect-form-submissions)
+   * [Scoring Tests](#scoring-tests)
+   * [UI Testing](#ui-testing)
 3. [**User Story Testing**](#user-story-testing)
 
 ## Automated Tests
@@ -36,7 +39,7 @@ Unit testing was used on this project to quickly and efficently test changes to 
 check that :-
 - All CRUD operations can be carried out on a database and that that database information makes it to the webpages it needs to get to. 
 - All routes take the user to the correct webpages and contain the required information from the database.
-- All functions in app.py return the correct values.
+- All functions in [app.py](https://github.com/KelvinHere/book-review-app/blob/master/app.py) return the correct values.
 - All tests were initally made to fail as to avoid false negatives.
 
 On running the unittests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py) the database is switched to an empty local database, some
@@ -56,7 +59,7 @@ The result of my unit-tests
 
 2. [Install MongoDB Community Edition](https://www.mongodb.com/try/download/community?tck=docs_server) binaries only dont worry about setting it as a service
 
-3. Add the following enviromental varialbes to env.py
+3. Add the following enviromental varialbes to env&#46;py
     - `os.environ.setdefault("IP", "0.0.0.0")`
     - `os.environ.setdefault("PORT", 5000)`
 
@@ -64,9 +67,9 @@ The result of my unit-tests
 
 4. Start the test database from the terminal in your deployed app directory.  Run `mongod` with the following arguments `--dbpath testdb` for example
 * `C:\MongoDB\Server\4.4\bin\mongod.exe --dbpath testdb`
-* Documentation to help running mongod [link here](https://docs.mongodb.com/manual/reference/program/mongod.exe/`)
+* Documentation to help running mongod [link here](https://docs.mongodb.com/manual/reference/program/mongod.exe/)
 
-5. Add your new tests to testbookapp.py in the deployed app directory
+5. Add your new tests to [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py) in the deployed app directory
 
 6. Run the unit tests from the terminal in your app directory with the following command `python3 -m unittest testbookapp.py` (use `py` instead of `python3` if you are using windows 10)
 
@@ -102,7 +105,7 @@ This test was performed on :-
 - Add review
 - Edit review
 
-### Scoring
+### Scoring Tests
 Manual tests were carried out on the scoring system to make sure the scores were being calculated
 correctly.  Tests below, each was tested out on a new book
 
@@ -171,8 +174,11 @@ Regarding mobile
 - That all text was comfortable to read on smaller.
 screens.
 
+The app was user tested by friends and family, unusual situations can usually be found under these
+testing circumstances.
+
 ## User Story Testing
-Answered user stories from the [user Stories](https://github.com/KelvinHere/book-review-app/blob/master/README.md#user-stories) section of [readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md)
+Answered user stories from the [User Stories](https://github.com/KelvinHere/book-review-app/blob/master/README.md#user-stories) section of [readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md)
 
 As a user I want
 1. **To find out more about a book quickly, because I don't have much time.**
