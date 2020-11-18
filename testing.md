@@ -1,5 +1,5 @@
 # Testing the Book Review app
-
+ 
 1. [**Automated Tests**](#automated-tests)
    * [Code Validation](#code-validation)
    * [Unit Testing](#unit-testing)
@@ -11,13 +11,13 @@
    * [Scoring Tests](#scoring-tests)
    * [UI Testing](#ui-testing)
 3. [**User Story Testing**](#user-story-testing)
-
+ 
 ## Automated Tests
-
+ 
 ### Code Validation
-
+ 
 This projects code has been validated through various services
-
+ 
 - W3C Markup
     - [viewbooks.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fview_books)
     - [addbook.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fadd_book)
@@ -29,54 +29,54 @@ This projects code has been validated through various services
     - [style.css](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fbook-review-kelvinhere.herokuapp.com%2Fstatic%2Fcss%2Fstyle.css&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
     * ![CSS3](https://www.w3.org/Icons/valid-css)
     * ![SVG](https://www.w3.org/Icons/valid-css-blue)
-
-- W3C Spellchecker
-    - All pages checked through W3C Spellchecker
-
+ 
+- W3C Spell Checker
+    - All pages checked through W3C Spell Checker
+ 
 ### Unit Testing
-
-Unit testing was used on this project to quickly and efficently test changes to code.  These tests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py)
+ 
+Unit testing was used on this project to quickly and efficiently test changes to code.  These tests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py)
 check that :-
 - All CRUD operations can be carried out on a database and that that database information makes it to the webpages it needs to get to. 
 - All routes take the user to the correct webpages and contain the required information from the database.
 - All functions in [app.py](https://github.com/KelvinHere/book-review-app/blob/master/app.py) return the correct values.
-- All tests were initally made to fail as to avoid false negatives.
-
+- All tests were initially made to fail as to avoid false negatives.
+ 
 On running the unittests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py) the database is switched to an empty local database, some
 setup is required if running locally, as explained below in [Writing your own unittests](#writing-your-own-unittests).  This allows
 the app to be tested end to end and stops the risk of the tests corrupting the live database.
-
-An example of this end to end testing would be, testing the view that adds a book to the database.  The unittest posts immitation form data to the insert_book view, the viewbooks view 
+ 
+An example of this end to end testing would be, testing the view that adds a book to the database.  The unittest posts imitation form data to the insert_book view, the viewbooks view 
 is then called to render the viewbooks.html page where this information should now be displayed and the test asserts that all the book information that should be pulled from the 
 database is displayed on the output page.
-
+ 
 The result of my unit-tests
 - ![unittests](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/testing/unittests.jpg "result of unit tests")
-
+ 
 ### Writing your own unittests
-
+ 
 1. Follow the local deployment instructions in the ['Local Deployment' section of readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md#deployment)
-
+ 
 2. [Install MongoDB Community Edition](https://www.mongodb.com/try/download/community?tck=docs_server) binaries only dont worry about setting it as a service
-
-3. Add the following enviromental varialbes to env&#46;py
+ 
+3. Add the following enviromental variables to env&#46;py
     - `os.environ.setdefault("IP", "0.0.0.0")`
     - `os.environ.setdefault("PORT", 5000)`
-
+ 
 3. Start your locally deployed book review application
-
+ 
 4. Start the test database from the terminal in your deployed app directory.  Run `mongod` with the following arguments `--dbpath testdb` for example
 * `C:\MongoDB\Server\4.4\bin\mongod.exe --dbpath testdb`
 * Documentation to help running mongod [link here](https://docs.mongodb.com/manual/reference/program/mongod.exe/)
-
+ 
 5. Add your new tests to [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py) in the deployed app directory
-
+ 
 6. Run the unit tests from the terminal in your app directory with the following command `python3 -m unittest testbookapp.py` (use `py` instead of `python3` if you are using windows 10)
-
+ 
 7. Optionally add the verbose argument `-v` to the command above to display more information on the tests running
-
+ 
 ## Manual Testing
-
+ 
 ### Database Testing
 Each feature of the apps CRUD operations have been tested manually
 - A book can be added
@@ -90,35 +90,35 @@ Each feature of the apps CRUD operations have been tested manually
 - Books can be sorted by Title A-Z or Z-A
 - Books can be sorted by Author A-Z or Z-A
 - Books can be sorted by rating ascending or descending
-
+ 
 ### Navigation Testing
-- Every route and button has been checked it takes you to the right destination.
-
+- Every route and button has been checked and it takes you to the right destination.
+ 
 ### Incorrect Form Submissions
 For each of the forms in this app an attempt was made to submit an incomplete form each time missing
 one field out.  Each time a field was missing the correct error message was displayed to inform the
 user to complete the field.
-
+ 
 This test was performed on :-
 - Add book
 - Edit book
 - Add review
 - Edit review
-
+ 
 ### Scoring Tests
 Manual tests were carried out on the scoring system to make sure the scores were being calculated
 correctly.  Tests below, each was tested out on a new book
-
-- **Test inital score** - Passed
+ 
+- **Test initial score** - Passed
     - Book added
         - Score 0
-
+ 
 - **Test add review** - Passed
     - Add book
     - Add 5 Star review
         - Book score 5
         - Review score 5
-
+ 
 - **Test add another review** - Passed
     - Add book
     - Add 0 star review
@@ -126,7 +126,7 @@ correctly.  Tests below, each was tested out on a new book
         - Review score 0
         - Review score 5
         - Book score 2.5
-
+ 
 - **Test update review** - Passed
     - Add book
     - Add 4 star review
@@ -135,7 +135,7 @@ correctly.  Tests below, each was tested out on a new book
             - Update review to 2 star
                 - Review score 2
                 - Book score 2
-
+ 
 - **Test delete review** - Passed
     - Add book
     - Add review 2 star
@@ -146,10 +146,10 @@ correctly.  Tests below, each was tested out on a new book
             - Delete 4 star review
                 - Review score 2
                 - Book score 2
-
+ 
 ### UI Testing
 The app has been tested to display correctly on :-
-
+ 
 - Mobile
     - Firefox
     - Chrome
@@ -158,67 +158,69 @@ The app has been tested to display correctly on :-
     - Chrome
     - Opera
     - Edge
-
-For each of these, all the functionallity of the app was tested to work as shown in
+ 
+For each of these, all the functionality of the app was tested to work as shown in
 the manual testing sections above.
-
-The app was tested on different resolution devices to check its responsivness.
-
+ 
+The app was tested on different resolution devices to check its responsiveness.
+ 
 - Small - 1 column of books
 - Medium - 2 columns of books
 - Large - 3 columns of books
-
+ 
 Regarding mobile
 - The UI was tested in Chrome Inspection tools, using each of its in built device emulators.
-- I checked that landscape and portrait responsiveness works changing column width if nessecary.
+- I checked that landscape and portrait responsiveness works changing column width if necessary.
 - That all text was comfortable to read on smaller.
 screens.
-
+ 
 The app was user tested by friends and family, unusual situations can usually be found under these
 testing circumstances.
-
+ 
 ## User Story Testing
 Answered user stories from the [User Stories](https://github.com/KelvinHere/book-review-app/blob/master/README.md#user-stories) section of [readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md)
-
+ 
 As a user I want
 1. **To find out more about a book quickly, because I don't have much time.**
 - A user can instantly see an average review score of a book and how many reviews have been written about it from
-its un-reavealed card.  If they want to know more or see a description they can click the cover to reveal that
+its un-revealed card.  If they want to know more or see a description they can click the cover to reveal that
 information.
-
+ 
 2. **To read reviews on a book I think I may like, because I want opinions before I buy it.**
 - A user can click read reviews from a books card to see each review and its rating.
-
+ 
 3. **To buy a book I just read reviews on, because it confirmed I will probably like it.**
 - A user can click an affiliate link to buy the book from its card revealed or unrevealed.
-
+ 
 4. **To find the highest rated book, because I want to see what 'is in'.**
 - A user can use the sort bar at the top of the home page to sort by rating high to low.
-
+ 
 5. **To buy a book with the worst overall rating, because I enjoy b-movies more than I should.**
 - A user can use the sort bar at the top of the home page to sort by rating low to high.
-
-6. **To view all of an authors books, because I will probably enjoy another book of the same author.**
+ 
+6. **To view all of an author's books, because I will probably enjoy another book of the same author.**
 - A user can sort books by author in ascending or descending order to group books by author.
-
-7. **To view titles in alphabetical order, becuase I kind of know what a book is called and this could help.**
+ 
+7. **To view titles in alphabetical order, because I kind of know what a book is called and this could help.**
 - A user can sort books by title in ascending or descending order.
-
+ 
 8. **To write a review on a book I have just read, because I want people to know how great/bad it was.**
 - A user can click on a write review button on a books card (revealed or unrevealed) to write a review.
-
+ 
 9. **To edit a review I just wrote, because I changed my mind on how I feel about it.**
 - A user can find their review and click the edit button to update their review.
-
+ 
 10. **To delete a review, because I don't want people knowing I have read this book.**
 - A user can find their review and click the delete button to remove their review.
-
+ 
 11. **To be able to create a book entry because it does not already exist and I want to review it.**
 - A user can click the add book button on the top menu bar / dropdown menu or bottom of the view books
 page.
-
-12. **I want to update some incorrect information in a books details.**
+ 
+12. **I want to update some incorrect information in a book's details.**
 - A user can click the edit book button of a books card  to update any information about that book.
-
+ 
 13. **To delete a book I created.**
 - If a user wants to delete a book they created, they can do it from the edit book page with the delete book button.
+ 
+
