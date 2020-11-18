@@ -1,6 +1,4 @@
 add favicon
 
-make nav bar dropdown text more bold
-
 Spencer questions-
     Python formatting, line too long

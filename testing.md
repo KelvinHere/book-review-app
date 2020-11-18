@@ -88,8 +88,88 @@ Each feature of the apps CRUD operations have been tested manually
 - Books can be sorted by Author A-Z or Z-A
 - Books can be sorted by rating ascending or descending
 
-### Navigation testing
+### Navigation Testing
 - Every route and button has been checked it takes you to the right destination.
+
+### Incorrect Form Submissions
+For each of the forms in this app an attempt was made to submit an incomplete form each time missing
+one field out.  Each time a field was missing the correct error message was displayed to inform the
+user to complete the field.
+
+This test was performed on :-
+- Add book
+- Edit book
+- Add review
+- Edit review
+
+### Scoring
+Manual tests were carried out on the scoring system to make sure the scores were being calculated
+correctly.  Tests below, each was tested out on a new book
+
+- **Test inital score** - Passed
+    - Book added
+        - Score 0
+
+- **Test add review** - Passed
+    - Add book
+    - Add 5 Star review
+        - Book score 5
+        - Review score 5
+
+- **Test add another review** - Passed
+    - Add book
+    - Add 0 star review
+    - Add 5 star review
+        - Review score 0
+        - Review score 5
+        - Book score 2.5
+
+- **Test update review** - Passed
+    - Add book
+    - Add 4 star review
+        - Review score 4
+        - Book score 4
+            - Update review to 2 star
+                - Review score 2
+                - Book score 2
+
+- **Test delete review** - Passed
+    - Add book
+    - Add review 2 star
+    - Add review 4 star
+        - Review score 2
+        - Review score 4
+        - Book score 3
+            - Delete 4 star review
+                - Review score 2
+                - Book score 2
+
+### UI Testing
+The app has been tested to display correctly on :-
+
+- Mobile
+    - Firefox
+    - Chrome
+- Desktop
+    - Firefox
+    - Chrome
+    - Opera
+    - Edge
+
+For each of these, all the functionallity of the app was tested to work as shown in
+the manual testing sections above.
+
+The app was tested on different resolution devices to check its responsivness.
+
+- Small - 1 column of books
+- Medium - 2 columns of books
+- Large - 3 columns of books
+
+Regarding mobile
+- The UI was tested in Chrome Inspection tools, using each of its in built device emulators.
+- I checked that landscape and portrait responsiveness works changing column width if nessecary.
+- That all text was comfortable to read on smaller.
+screens.
 
 ## User Story Testing
 Answered user stories from the [user Stories](https://github.com/KelvinHere/book-review-app/blob/master/README.md#user-stories) section of [readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md)
