@@ -305,6 +305,21 @@ The deployed version of 'Book Review' is hosted on Heroku and was deployed with 
 13. Click 'Open App' 
 14. The App should now be running through Heroku
 
+### Deployment with Gunicorn
+
+As specified in the [Flask deployment](https://flask.palletsprojects.com/en/1.1.x/deploying/#deployment) documentation, Flasks built in server is not sutable for production as it does not scale well.
+I decided deploy to Heroku with Gunicorn as the server, deployment instructions on the Heroku website in [this link](https://devcenter.heroku.com/articles/python-gunicorn).
+
+A quick summary of instructions with basic configuration below.
+
+1. Install gunicorn with `pip install gunicorn`
+2. `pip freeze --local > requirements.txt` to update your requirements.txt to include gunicorn
+3. Create a point of entry for gunicorn, I created a file called [wsgi.py](https://github.com/KelvinHere/book-review-app/blob/master/wsgi.py) click to see its contents
+4. Update the procfile to `web: gunicorn wsgi:app` so Heroku can launch the app through gunicorn
+5. Log into heroki CLI and run `heroku config:set WEB_CONCURRENCY=3` to add an enviromental variable into the app on heroku to take advantage of concurrency
+6. Commit your changes as before
+7. Push to heroku with `git push heroku master`
+8. The app should now be on heroku running on gunicorn
 
 ## Credits
 ### Content
