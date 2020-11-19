@@ -37,7 +37,7 @@ This projects code has been validated through various services
  
 Unit testing was used on this project to quickly and efficiently test changes to code.  These tests in [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py)
 check that :-
-- All CRUD operations can be carried out on a database and that that database information makes it to the webpages it needs to get to. 
+- All of the apps CRUD operations can be carried out on a database.
 - All routes take the user to the correct webpages and contain the required information from the database.
 - All functions in [app.py](https://github.com/KelvinHere/book-review-app/blob/master/app.py) return the correct values.
 - All tests were initially made to fail as to avoid false negatives.
@@ -46,9 +46,9 @@ On running the unittests in [testbookapp.py](https://github.com/KelvinHere/book-
 setup is required if running locally, as explained below in [Writing your own unittests](#writing-your-own-unittests).  This allows
 the app to be tested end to end and stops the risk of the tests corrupting the live database.
  
-An example of this end to end testing would be, testing the view that adds a book to the database.  The unittest posts imitation form data to the insert_book view, the viewbooks view 
-is then called to render the viewbooks.html page where this information should now be displayed and the test asserts that all the book information that should be pulled from the 
-database is displayed on the output page.
+An example of this end to end testing would be, testing the view that adds a book to the database.  The unittest posts imitation form data to the 'insert_book' view, the 'viewbooks' 
+view is then called to render the viewbooks.html page where the form information added should be read from the database and be displayed.  The test asserts that all the book 
+information that should be read from the database is present on the viewbooks.html output page.
  
 The result of my unittests
 - ![unittests](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/testing/unittests.jpg "result of unit tests")
@@ -57,7 +57,7 @@ The result of my unittests
  
 1. Follow the local deployment instructions in the ['Local Deployment' section of readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md#deployment)
  
-2. [Install MongoDB Community Edition](https://www.mongodb.com/try/download/community?tck=docs_server) binaries only dont worry about setting it as a service
+2. [Install MongoDB Community Edition](https://www.mongodb.com/try/download/community?tck=docs_server), binaries only dont worry about setting it as a service
  
 3. Add the following enviromental variables to env&#46;py
     - `os.environ.setdefault("IP", "0.0.0.0")`
@@ -69,9 +69,9 @@ The result of my unittests
     * `C:\MongoDB\Server\4.4\bin\mongod.exe --dbpath testdb`
     * Documentation to help running mongod [link here](https://docs.mongodb.com/manual/reference/program/mongod.exe/)
  
-5. Add your new tests to [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py) in the deployed app directory
+5. Add your new tests to [testbookapp.py](https://github.com/KelvinHere/book-review-app/blob/master/testbookapp.py)
  
-6. Run the unit tests from the terminal in your app directory with the following command `python3 -m unittest testbookapp.py` (use `py` instead of `python3` if you are using windows 10)
+6. Run the unit tests from the terminal with `python3 -m unittest testbookapp.py` (use `py` instead of `python3` if you are using windows 10)
  
 7. Optionally add the verbose argument `-v` to the command above to display more information on the tests running
  
@@ -82,22 +82,23 @@ Each feature of the apps CRUD operations have been tested manually
 - A book can be added
 - A book can be deleted
 - A book can be edited
-- Books display on front page
+- Books display on the home page
 * A review can be added
 * A review can be deleted
 * A review can be edited
 * Reviews can be viewed by book
-- Books can be sorted by Title A-Z or Z-A
-- Books can be sorted by Author A-Z or Z-A
-- Books can be sorted by rating ascending or descending
+- Books can be sorted by Title, ascending or descending
+- Books can be sorted by Author, ascending or descending
+- Books can be sorted by rating, ascending or descending
  
 ### Navigation Testing
-- Every route and button has been checked and it takes you to the right destination.
+- Every route and button has been checked and it takes you to the correct destination.
  
 ### Incorrect Form Submissions
-For each of the forms in this app an attempt was made to submit an incomplete form each time missing
-one field out.  Each time a field was missing the correct error message was displayed to inform the
-user to complete the field.
+For each of the forms in this app an attempt was made to submit an incomplete  or incorrect form each time missing
+or using an incorrect type in each field.  Each time a field was missing the correct error message was displayed to
+inform the user to complete the field.  Each time an incorrect type was entered into a field the correct error message
+was displayed. 
  
 This test was performed on :-
 - Add book
@@ -107,7 +108,7 @@ This test was performed on :-
  
 ### Scoring Tests
 Manual tests were carried out on the scoring system to make sure the scores were being calculated
-correctly.  Tests below, each was tested out on a new book
+correctly.  Tests below, each test was carried out on a newly input book.
  
 - **Test initial score** - Passed
     - Book added
@@ -119,7 +120,7 @@ correctly.  Tests below, each was tested out on a new book
         - Book score 5
         - Review score 5
  
-- **Test add another review** - Passed
+- **Test add multiple reviews** - Passed
     - Add book
     - Add 0 star review
     - Add 5 star review
@@ -170,12 +171,11 @@ The app was tested on different resolution devices to check its responsiveness.
  
 Regarding mobile
 - The UI was tested in Chrome Inspection tools, using each of its in built device emulators.
-- I checked that landscape and portrait responsiveness works changing column width if necessary.
-- That all text was comfortable to read on smaller.
-screens.
+- I checked that mobile landscape and portrait responsiveness works changing column width if necessary.
+- That all text was comfortable to read on smaller screens.
  
-The app was user tested by friends and family, unusual situations can usually be found under these
-testing circumstances.
+The app was user tested by friends and family on mobile and desktop, unusual situations can usually be 
+found under these testing circumstances.
  
 ## User Story Testing
 Answered user stories from the [User Stories](https://github.com/KelvinHere/book-review-app/blob/master/README.md#user-stories) section of [readme.md](https://github.com/KelvinHere/book-review-app/blob/master/README.md)

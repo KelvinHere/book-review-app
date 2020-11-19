@@ -1,12 +1,9 @@
 # Book Review App - Data centric development
  
-****!Remove development server before deploying****
+Book Review
  
-Book Review App
- 
-A book review app where users can read and write reviews on books, with 
-links to buy these books.  If a book is not on the app a user can create
-it.
+This is a book review app where users can read, score and write reviews on books.  If a book is not on
+the app a user can create it.  Users can find books they may like and click on links to buy.
  
 * [Live link to site](https://book-review-kelvinhere.herokuapp.com/ 'Heroku live link to app')
 * [This Repository](https://github.com/KelvinHere/book-review-app 'Github repository link')
@@ -49,7 +46,7 @@ it.
 #### Project Purpose
  
 The purpose of this project is to create an application where people can review books
-they have read and find new books they might enjoy from a description and reviews.
+they have read and find new books they might enjoy from a description, rating and reviews.
  
 #### Wireframe Designs
  
@@ -57,7 +54,7 @@ they have read and find new books they might enjoy from a description and review
 ![BookView](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/wireframes/wireframe-home-s.jpg "Book view wireframe image")
 - On clicking the book covers you will be shown a reveal with extra information
 ![RevealView](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/wireframes/wireframe-reveal-s.jpg "Book view revealed wireframe image")
-- Viewing reviews page
+- Books each have a reviews page
 ![ReviewsView](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/wireframes/wireframe-reviews-s.jpg "View reviews wireframe image")
 - All input forms will take the style below, this will cover adding or editing a book or review.
 ![FormView](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/wireframes/wireframe-add-review-s.jpg "Form wireframe image")
@@ -83,25 +80,24 @@ As a user I want
  
 The business purpose of this app is to engage the user with a list of books they can enjoy, 
 the user can browse books, reviews and click affiliate links to buy books, earning the 
-owner of the app money.
+owner of the app affiliate revenue.
  
 #### Developer Goals
  
-Each feature must be well programmed, function properly and tested to be bug free.  This 
-will display a professional use of the programming languages and test suite.
+Each feature must be well programmed, function properly and tested to be bug free.
  
-This project will display I have an understanding of how to integrate a database into an app
-and perform CRUD operations on the database from a frontend.
+This project will display I have an understanding of how deploy a web app, integrate a database
+into that app and perform CRUD operations on the database through a frontend.
  
 To show an understanding of Flask, Python, MongoDB, Javascript, jQuery,
-Materialize, HTML, CSS, Unittests and how they all interact to form a final product.
+Materialize, HTML, CSS, Gunicorn, Unittests and how they all interact to form a final product.
  
 #### Design Choices
  
 ##### General Design
  
 Materialize with cards was used to create an app that will be instantly familiar with anyone
-who has used a google product, allowing a large amount of users to instantly begin browsing
+who has used a google product, allowing a large amount of users to intuitively begin browsing
 the app.
  
 The design was made minimal with a very clean look to avoid information overload on smaller
@@ -109,20 +105,20 @@ screens and allow the book covers to draw most attention.  The site is made mobi
 to be responsive to screen size, allowing larger screens to show more books at once.
  
 As the database of books grows, it will be harder to find a book you may be looking for, so
-a search by title, rating and author was introduced.
+a sort by title, rating and author was introduced.
  
 Navigation and selection are consistent throughout the app.
  
 ##### Colours and Fonts
  
-**Font 1** - The font 'Oswald' was used in busy areas where needed and the branding, as it is heavy enough 
-to draw attention to itself even if there is a lot of other text on the screen, such as a synopsis.
+**Font 1** - 'Oswald' was used for branding, titles and in busy areas where impact was needed.  It is heavy enough 
+to draw attention to itself even if there is a lot of other text on the screen.
  
-**Font 2** - For sub text, such as reviews and descriptions I used the font 'Quicksand', this font is easy to read and
+**Font 2** - 'Quicksand' was used for sub text, such as reviews and descriptions.  This font is easy to read and
 looks 'tidy' helping the app look professional.
  
 **Colours** - For the main site colours I used Teal and White, I went two tone as I wanted the color focus to be on the
-book covers and help the star ratings stand out.  The majority of the site is shadowed cards with Teal
+book covers and help the yellow star ratings stand out.  The majority of the site is shadowed cards with Teal
 for the header and most buttons.  The only exceptions to this are the edit button (yellow) and the delete
 buttons (red), these stand out warning colours should give the user an idea they might want to think
 before clicking.
@@ -163,14 +159,16 @@ Using this app you will be able to  :-
 * Book cards are automatically created via information from the database.
  
 #### Backend
-* The review score when adding a review is checked and capped between 0 and 10, if a user edits the form to give the book a score of 100 it will be reduced to 10, or -55 will be turned to 0, avoiding review score manipulation.
+* The score on a review, is checked and capped between 0 and 10, ie. if a user edits the form to give the book a score of 100 it will 
+be reduced to 10, or -55 will be turned to 0, avoiding review score manipulation.
 * The reviews button also displays how many reviews there are for a book example "15 Reviews".
-* Book titles and author names are turned lower case for future proofing the app to avoid duplicate books and allow easier searches.
+* Book titles and author names are turned lower case in the database for future proofing the app to avoid duplicate books and authors,
+allowing for easier searches.
  
 #### Frontend
-* The website header title will always take you to the home page and keep your sort settings.
+* The app title in the header will always take you to the home page and keep your sort settings.
 * The nav buttons at the top of the page will collapse into an icon on smaller screens.
-* The book cards are 1 column wide on mobile, 2 columns on medium res tablets and 3 columns on high res desktops.
+* The book cards are 1 column wide on smalls screens, 2 columns on medium screens and 3 columns on large screens.
 * Books will have a link to buy, which will take you to a specified external web page.
 * Book cards have "Title", "Author", "Rating" as well as a cover to give users quick relevant information.
 * Book cards have buttons that show the number of reviews, an option to write a review or buy for quick access.
@@ -180,21 +178,21 @@ Using this app you will be able to  :-
  
  
 ### Changes during development
- 
-During development a new useful feature was added:-
+
+1. During development a new useful feature was added:-
 After sorting books by rating, also sub-sort them by number of reviews.
  
-This would allow books that have a high rating and lots of reviews rank higher than books with just one high rating review.  But this feature
+    This allows books that have a high rating and lots of reviews rank higher than books with just one high rating review.  But this feature
 needed another field to be added to all the documents.  I wrote a small script that would update all documents of my book collection with the
 new field **review_num**, after this all books in the books collection would be iterated over and have the length of the reviews array assigned
 to the review_num field.
  
-An extra method was created to increment or decrement the review_num each time a review is added or removed.
+    An extra method was created to increment or decrement the review_num each time a review is added, updated or removed.
  
-This was done after using mongodump.exe to create a backup of the database.
+    This was done after using mongodump.exe to create a backup of the database.
  
-The app was changed from the default Flask server to use Gunicorn as it was recommended not to use the default Flask server during production 
-by the Flask documentation.
+2. The app was changed from the default Flask server to use Gunicorn as it was recommended not to use the default Flask server during production 
+by the Flask documentation more information in [Deployment with Gunicorn](#deployment-with-gunicorn).
  
 ### Future Features
  
@@ -202,12 +200,14 @@ by the Flask documentation.
  
 - Add sort by genre feature
 - Add book and author search feature
+- When adding a book give a list of authors when typing that field to keep all author names the same format
  
 ##### Far Future
  
 - Add login system so
     1. Users can only edit and delete their own reviews
     1. Only an administrator can delete a book
+    1. Users can flag favourite books
  
 ## Testing
  
@@ -269,10 +269,10 @@ Clone this repository to your local workspace :-
     - Click 'connect your application'
     - Select your driver and version ie 'Python' '3.6 or later'
     - Copy the given "Connection String"
-    - Create env.py in the root of the book app workspace and add the code below
+    - Create env.py in the root of the local book app workspace and add the code below
         - `import os`
-        - `os.environ.setdefault()`
-    - Paste the Connection String inside this and replace the <> markers with your Atlas details
+        - `os.environ.setdefault("MONGO_URI", )`
+    - Paste the Connection String inside os.environ.setdefault() and replace the <> markers with your Atlas details
     - The contents of env.py should look similar to the code below
         - `import os`
         - `os.environ.setdefault("MONGO_URI", "mongodb+srv://root:MYPASSWORD@firstcluster.er9ib.mongodb.net/book_app_db?retryWrites=true&w=majority")`
@@ -289,10 +289,10 @@ The deployed version of 'Book Review' is hosted on Heroku and was deployed with 
     - A Heroku account
     - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed locally, instructions in [this link](https://devcenter.heroku.com/articles/heroku-cli)
  
-1. Create a Heroku account and login
+1. Login to your Heroku account
 2. Click New > App
 3. Give the app a name, select a region and create the app
-4. Setup enviromental variables in Heroku
+4. Setup enviromental variables in Heroku :-
     - Select your app in Heroku and click settings
     - Under Config Vars set up the key value pairs as below
     - IP = 0.0.0.0
@@ -305,9 +305,9 @@ The deployed version of 'Book Review' is hosted on Heroku and was deployed with 
 9. `git add .` and `git commit` your changes
 10. `git push heroku master` to deploy to Heroku
 11. From the Heroku website
-12. You many need to click 'More' in the Heroku app and select 'Restart all dynos'
-13. Click 'Open App' 
-14. The App should now be running through Heroku
+    - You many need to click 'More' in the Heroku app and select 'Restart all dynos'
+    - Click 'Open App' 
+    - The App should now be running through Heroku
  
 ### Deployment with Gunicorn
  
@@ -316,11 +316,11 @@ I decided to deploy to Heroku with Gunicorn as the server, deployment instructio
  
 A quick summary of instructions with basic configuration below.
  
-1. Install gunicorn with `pip install gunicorn`
+1. Locally install gunicorn with `pip install gunicorn`
 2. `pip freeze --local > requirements.txt` to update your requirements.txt to include gunicorn
 3. Create a point of entry for gunicorn, I created a file called [wsgi.py](https://github.com/KelvinHere/book-review-app/blob/master/wsgi.py) click to see its contents
-4. Update the procfile to `web: gunicorn wsgi:app` so Heroku can launch the app through gunicorn
-5. Log into heroku CLI and run `heroku config:set WEB_CONCURRENCY=3` to add an environmental variable into the app on heroku to take advantage of concurrency
+4. Update the procfile to `web: gunicorn wsgi:app` so Heroku will launch the app through gunicorn
+5. Log into heroku CLI and run `heroku config:set WEB_CONCURRENCY=3` to add an environmental variable into the app on heroku to take advantage of concurrency and make the app more responsive at scale
 6. Commit your changes as before
 7. Push to heroku with `git push heroku master`
 8. The app should now be on heroku running on gunicorn
