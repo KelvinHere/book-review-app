@@ -338,6 +338,7 @@ A quick summary of instructions with basic configuration below.
 ### Acknowledgements
  
 * [Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/).
+* [Python Unittest Documentation](https://docs.python.org/3/library/unittest.html)
 * [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04) - For deployment information on gunicorn
 * [Code Institute](https://codeinstitute.net/).
 * My mentor Spencer.

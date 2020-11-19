@@ -181,6 +181,13 @@ def update_average_score(book_id):
 
 
 if __name__ == "__main__":
-    app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=True)
+    if os.environ.get("MONGO_URI"):
+        # Debug mode
+        app.run(host=os.environ.get('IP'),
+                port=int(os.environ.get('PORT')),
+                debug=True)
+    else:
+        # Turn off debug mode if not running with env.py
+        app.run(host=os.environ.get('IP'),
+                port=int(os.environ.get('PORT')),
+                debug=False)
