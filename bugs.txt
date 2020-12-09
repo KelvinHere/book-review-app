@@ -1,5 +1,0 @@
-add favicon
-
-Spencer questions-
-    Python formatting, line too long
-    Is there enough javascript/jquery used in the project?
