@@ -51,6 +51,8 @@ view is then called to render the viewbooks.html page where the form information
 information that should be read from the database is present on the viewbooks.html output page.
  
 The result of my unittests
+From gitpod unit tests can be run by starting the local database `mongod --dbpath testdb`
+Then running the tests `python3 -m unittest testbookapp.py -v`
 - ![unittests](https://github.com/KelvinHere/book-review-app/blob/master/readme-files/testing/unittests.jpg "result of unit tests")
  
 ### Writing your own unittests
